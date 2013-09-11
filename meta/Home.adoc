@@ -1,0 +1,34 @@
+= Neo4j GraphGist =
+
+Neo4j GraphGists are a way to share documents including Cypher queries.
+The queries can be executed in an online console.
+GraphGists can be used to share examples or ideas or outline a question you have.
+
+See also the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection] and check out the *http://www.neo4j.org/learn/graphgist_challenge[GraphGist Challenge]*!
+
+You create a GraphGist by creating a https://gist.github.com/[GitHub Gist] in http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc] and enter the URL to it in the form on this page.
+The GraphGist is just as private as the GitHub Gist you created.
+To share a GraphGist, just share the URL the page gets after entering the Gist in the form.
+
+For instructions, see:
+
+* link:./?5956239[A simple GraphGist]
+* link:./?5956246[How to create a GraphGist]
+
+This is what the result can look like:
+
+//console
+
+A first simple query to just create a node:
+
+[source,cypher]
+----
+CREATE (n{name:'first node'});
+----
+
+NOTE: This document is a GraphGist, use the Page Source button on top of the page to see the document behind it.
+
+== Examples
+
+* link:./?5956880[Create nodes and relationships]
+
