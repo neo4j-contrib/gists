@@ -12,8 +12,8 @@ To share a GraphGist, just share the URL the page gets after entering the Gist i
 
 For instructions, see:
 
-* link:./?5956239[A simple GraphGist]
-* link:./?5956246[How to create a GraphGist]
+* link:./?github-neo4j-contrib%2Fgists%2Fcontents%2Fmeta%2FSimple.adoc[A simple GraphGist]
+* link:./?github-neo4j-contrib%2Fgists%2Fcontents%2Fmeta%2FHowTo.adoc[How to create a GraphGist]
 
 This is what the result can look like:
 
