@@ -12,6 +12,10 @@ To share a GraphGist, just share the URL the page gets after entering the Gist i
 
 For instructions, see:
 
+++++
+<iframe src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74279113">How to create a Neoj4 GraphGist</a> from <a href="http://vimeo.com/user1375223">Peter Neubauer</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+++++
+
 * link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FSimple.adoc[A simple GraphGist]
 * link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FHowTo.adoc[How to create a GraphGist]
 
