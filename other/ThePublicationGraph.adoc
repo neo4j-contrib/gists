@@ -1,13 +1,23 @@
 = The Publication Graph
 
+== Prepare the schema
+
+[source,cypher]
+----
+CREATE CONSTRAINT ON (p:Person) ASSERT p.handle IS UNIQUE
+----
+
+
 == The basic data
+
+
 
 [source,cypher]
 ----
 CREATE 
   (Article1:Content{title:'Neo4j in 5 minutes'}),
   (Heise:Publisher{name:'Heise'}),
-  (John:Reader{name:'John'}),
+  (John:Reader{name:'John',handle:'@john'}),
   (Heise) -[:published{year:2013}]->(Article1),
   (John)-[:read{rating:4}]->(Article1)
 ----
