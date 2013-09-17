@@ -8,7 +8,7 @@ CREATE
   (Article1:Content{title:'Neo4j in 5 minutes'}),
   (Heise:Publisher{name:'Heise'}),
   (John:Reader{name:'John'}),
-  (Heise) -[:published{year:2013}]->(article1),
+  (Heise) -[:published{year:2013}]->(Article1),
   (John)-[:read{rating:4}]->(Article1)
 ----
 
