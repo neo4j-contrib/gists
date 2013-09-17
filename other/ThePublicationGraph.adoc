@@ -1,0 +1,15 @@
+= The Publication Graph
+
+== The basic data
+
+[source,cypher]
+----
+CREATE 
+  (article1{title:'Neo4j in 5 minutes'})
+  (Heise{name:'Heise'})
+  (Heise) -[:published{year:2013}]->article1
+----
+
+//graph
+
+//console
