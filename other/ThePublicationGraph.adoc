@@ -16,7 +16,7 @@ CREATE CONSTRAINT ON (p:Person) ASSERT p.handle IS UNIQUE
 ----
 CREATE 
   (JM_DE:Publication{name:'Java Magazin', language:'DE'}),
-  (JM_DE)<-[:ISSUES_OF]-(JMNov2011{month:11, title:'Java Magazin 11/2013'})-[:IN_YEAR]->(2012{year:2013}),
+  (JM_DE)<-[:ISSUES_OF]-(JMNov2011{month:11, title:'Java Magazin 11/2013'})-[:IN_YEAR]->(_2012{year:2013}),
   (Neo4j20Tutorial:Content{title:'Neo4j 2.0 Tutorial'}),
   (SnS:Publisher{name:'S&S Media'})-[:PUBLISHES]->(JM_DE),
   (JMNov2011)-[:CONTAINS]->(Neo4j20Tutorial),
