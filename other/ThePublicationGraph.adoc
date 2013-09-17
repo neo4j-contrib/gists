@@ -20,9 +20,12 @@ CREATE
   (Neo4j20Tutorial:Content{title:'Neo4j 2.0 Tutorial'}),
   (SnS:Publisher{name:'S&S Media'})-[:PUBLISHES]->(JM_DE),
   (JMNov2011)-[:CONTAINS]->(Neo4j20Tutorial),
-  (Olli:Reader{name:'Oliver Meyer',handle:'@olli'})-[:rated{rating:4}]->(Neo4j20Tutorial),
+  (Olli:Reader{name:'Oliver Meyer',handle:'@olli'})-[:RATED{rating:4}]->(Neo4j20Tutorial),
+  (MH:Author:Reader{name:'Michael Hunger',handle:'@mesirii'})-[:AUTHORED]->(Neo4j20Tutorial),
   (Neo4j20Tutorial)-[:RELATED_TO]->(Neo4j20Rel:Content{title:'Neo4j 2.0-M05 released'})-[:TAGGED]->(NoSQL:Tag{name:'NoSQL'}),
-  (Neo4j20Tutorial)-[:TAGGED]->(NoSQL)
+  (Neo4j20Tutorial)-[:TAGGED]->(NoSQL),
+  (Neo4j20Tutorial)-[:TAGGED]->(:Tag{name:'tutorial'}),
+  (Neo4j20Tutorial)-[:TAGGED]->(:Tag{name:'Neo4j'})
 ----
 
 //graph
