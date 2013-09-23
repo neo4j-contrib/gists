@@ -125,13 +125,13 @@ Headings:
 
 Images:
 
-Static images -
+Static images:
 
  image::http://assets.neo4j.org/img/still/cineasts.gif[]
 
 image::http://assets.neo4j.org/img/still/cineasts.gif[]
 
-Dyanmically generated images:
+Dynamically generated images:
 
   image::http://yuml.me/diagram/scruffy/class/[Order]-billing%20%3E[Address%7Cname=hej],%20[Order]-shipping%20%3E[Address],[Order]-has%3E[Item][test]
   
