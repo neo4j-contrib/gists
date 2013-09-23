@@ -152,3 +152,47 @@ Monospaced block: indent lines with one space.
 Tables are well supported.
 See http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc Quick Reference] for information on that and more.
 
+
+Mathematical formulas:
+
+When using Math formulas, put them into a source block using LaTex syntax with `\(` and `\)` start and end delimiters, encapsulated in Asciidoc source blocks.
+The formulas are rendered through http://www.mathjax.org/demos/tex-samples/[MathJAX], supported commands are http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands[here].
+
+ ++++
+ \(ax^2 + bx + c \ne 0\)
+ ++++
+
+becomes
+
+++++
+\(ax^2 + bx + c \ne 0\)
+++++
+
+Below are some more examples.
+
+++++
+1. 
+\(
+\begin{equation}
+\left[
+{\bf X} + {\rm a} \ \geq\
+\underline{\hat a} \sum_i^N \lim_{x \rightarrow k} \delta C
+\right]
+\end{equation}
+\)
+<br/>
+2. \(ax^2 + bx + c \ne 0\) 
+
+<br/>
+4. \(x = {-b \pm \sqrt{b^2-4ac} \over 2a}\)
+<br/>
+
+5. \(\sin^{-1} \theta\) 
+<br/>
+
+6. \(\int_a^b f(x)~dx\)
+<br/>
+
+7.\(\sum\limits_{i=1}^n X_i\)
+<br/>
+++++
