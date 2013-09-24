@@ -117,13 +117,13 @@ CREATE (n{name:'cypher'}
 | `link:./?5956246[Link to a GraphGist]` | link:./?5956246[Link to a GraphGist]
 |===
 
-Headings:
+=== Headings:
 
  = Heading 1
  == Heading 2
  === Heading 3
 
-Images:
+=== Images:
 
 Static images:
 
@@ -141,7 +141,7 @@ becomes
 
 image::http://yuml.me/diagram/scruffy/class/[Order]-billing%20%3E[Address%7Cname=hej],%20[Order]-shipping%20%3E[Address],[Order]-has%3E[Item][test]
 
-Lists:
+=== Lists:
 
 ----
 * Item 1
@@ -167,7 +167,7 @@ Tables are well supported.
 See http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc Quick Reference] for information on that and more.
 
 
-Mathematical formulas:
+== Mathematical formulas
 
 When using Math formulas, put them into a source block using LaTex syntax with `\(` and `\)` start and end delimiters, encapsulated in Asciidoc source blocks.
 The formulas are rendered through http://www.mathjax.org/demos/tex-samples/[MathJAX], supported commands are http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands[here].
