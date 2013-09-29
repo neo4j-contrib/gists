@@ -35,6 +35,8 @@ RETURN n.name, r
 ----
 
 _Queries are executed in the order they appear on the page during rendering, so make sure they can be performed in that order._
+If you have a _setup query,_ it normally makes most sense to define it as the first query on the page.
+If it takes up too much space, hide it (see below for information on this).
 Each query has a green or red button to indicate if the query was successful or not.
 The console is set up after the executions, with an empty database, for the reader to play around with the queries.
 
