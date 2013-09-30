@@ -174,9 +174,10 @@ See http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc Quick Referen
 When using Math formulas, put them into a source block using LaTex syntax with `\(` as a start delimiter.
 
 The end delimiter is `\)`.
-The delimiters and the content between them should be placed in a AsciiDoc passthrough block.
+The delimiters and the content between them should be placed in a AsciiDoc passthrough block without attribute substitution.
 The formulas are rendered through http://www.mathjax.org/demos/tex-samples/[MathJAX], supported commands are http://docs.mathjax.org/en/latest/tex.html#supported-latex-commands[here].
-
+ 
+ [subs=none]
  ++++
  \(ax^2 + bx + c \ne 0\)
  ++++
@@ -189,6 +190,7 @@ becomes
 
 Below are some more examples.
 
+[subs=none]
 ++++
 1. 
 \(
@@ -215,4 +217,6 @@ Below are some more examples.
 7.\(\sum\limits_{i=1}^n X_i\)
 <br/>
 ++++
+
+for more examples, see http://gist.neo4j.org/?6725918[Some GraphGist Latex Examples]
 
