@@ -4,7 +4,7 @@ Neo4j GraphGists are a way to share documents including Cypher queries.
 The queries can be executed in an online console.
 GraphGists can be used to share examples or ideas or outline a question you have.
 
-See also the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection] and check out the *http://www.neo4j.org/learn/graphgist_challenge[GraphGist Challenge]*!
+See also the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection] and check out the *http://blog.neo4j.org/2013/10/the-first-graphgist-challenge-completed.html[results of the first GraphGist Challenge]*!
 
 You create a GraphGist by creating a https://gist.github.com/[GitHub Gist] in http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc] and enter the URL to it in the form on this page.
 The GraphGist is just as private as the GitHub Gist you created.
