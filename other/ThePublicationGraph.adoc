@@ -29,6 +29,8 @@ CREATE
   (Neo4j20Tutorial)-[:TAGGED]->(:Tag{name:'Neo4j'})
 ----
 
+//graph
+
 == Find all articles in 2013 tagged with `NOSQL`
 
 [source,cypher]
@@ -43,4 +45,4 @@ RETURN
   content, pub
 ----
 
-//graph
+//table
