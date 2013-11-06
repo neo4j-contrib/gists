@@ -36,10 +36,9 @@ CREATE
 [source,cypher]
 ----
 MATCH
-  (year)<-[:IN_YEAR]-(issue)-[:ISSUE_OF]->(pub:Publication),
+  (year{year:2013})<-[:IN_YEAR]-(issue)-[:ISSUE_OF]->(pub:Publication),
   (issue)-[:CONTAINS]->(content:Content)-[:TAGGED]->(nosql:Tag)
 WHERE 
-  year.year=2013 AND
   nosql.name='NOSQL'
 RETURN
   content.title as Title, issue.title as Issue, pub.name as Publication
