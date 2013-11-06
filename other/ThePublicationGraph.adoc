@@ -34,7 +34,8 @@ CREATE
 [source,cypher]
 ----
 MATCH
-  (year)<-[:IN_YEAR]-(issue)-[:ISSUE_OF]->(pub:Publication)-[:CONTAINS]->(content:Content)-[:TAGGED]->(nosql)
+  (year)<-[:IN_YEAR]-(issue)-[:ISSUE_OF]->(pub:Publication),
+  (issue)-[:CONTAINS]->(content:Content)-[:TAGGED]->(nosql)
 WHERE 
   year.year=2103 AND
   nosql.name='NOSQL'
