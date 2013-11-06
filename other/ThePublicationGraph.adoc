@@ -1,6 +1,9 @@
 = The Publication Graph
 
-== Prepare the schema
+In the world of publications and CMSes, meta-data about different articles, authors, issues and other entities lends itself very obviously to a graph.
+This example is modeling just a small subset of a fictive domain in this area.
+
+== Prepare the schema, make `Person`s unique
 
 [source,cypher]
 ----
@@ -8,9 +11,7 @@ CREATE CONSTRAINT ON (p:Person) ASSERT p.handle IS UNIQUE
 ----
 
 
-== The basic data
-
-
+== Insert some basic data
 
 [source,cypher]
 ----
@@ -29,5 +30,3 @@ CREATE
 ----
 
 //graph
-
-//console
