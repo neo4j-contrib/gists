@@ -42,7 +42,7 @@ WHERE
   year.year=2013 AND
   nosql.name='NOSQL'
 RETURN
-  content.title as Title, issue.title as Issue, pub as Publication
+  content.title as Title, issue.title as Issue, pub.name as Publication
 ----
 
 //table
