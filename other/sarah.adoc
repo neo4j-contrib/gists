@@ -2,7 +2,7 @@
 
 Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modelled a TV show and a social network, and as I read more of the post it felt like both domains were very graphy in nature.
 
-We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of Cypher, created a mini version of each of the domains that Sarah described.
+We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of http://docs.neo4j.org/chunked/preview/cypher-query-lang.html[Cypher], created a mini version of each of the domains that Sarah described.
 
 The TV show model is as follows:
 
