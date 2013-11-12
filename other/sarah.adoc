@@ -1,4 +1,4 @@
-= The Diaspora graph model
+= The Diaspora data model - OMG it's a graph!
 
 Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modelled a TV show and a social network, and as I read more of the post it felt like both domains were very graphy in nature.
 
