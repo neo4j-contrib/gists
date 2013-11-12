@@ -1,0 +1,58 @@
+= The Diaspora graph model
+
+Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modelled a TV show and a social network, and as I read more of the post it felt like both domains were very graphy in nature.
+
+We wanted to see if our intuition was right and so with the help of Cypher, created a mini version of each of the domains that Sarah described.
+
+The TV show model is as follows:
+
+
+
+== The TV Series setup
+
+[source,cypher]
+----
+CREATE (himym:TVShow {name: "How I Met Your Mother"})
+CREATE (himym_s1:Season {name: "HIMYM Season 1"})
+CREATE (himym_s1_e1:Episode {name: "Pilot"})
+
+CREATE (ted:Character {name: "Ted Mosby"})
+CREATE (marshall:Character {name: "Marshall Eriksen"})
+CREATE (robin:Character {name: "Robin Scherbatsky"})
+CREATE (barney:Character {name: "Barney Stinson"})
+CREATE (lily:Character {name: "Lily Aldrin"})
+
+CREATE (joshRadnor:Actor {name: "Josh Radnor"})
+CREATE (jasonSegel:Actor {name: "Jason Segel"})
+CREATE (cobieSmulders:Actor {name: "Cobie Smulders"})
+CREATE (neilPatrickHarris:Actor {name: "Neil Patrick Harris"})
+CREATE (alysonHannigan:Actor {name: "Alyson Hannigan"})
+
+CREATE UNIQUE (joshRadnor)-[:PLAYED_CHARACTER]->(ted)
+CREATE UNIQUE (jasonSegel)-[:PLAYED_CHARACTER]->(marshall)
+CREATE UNIQUE (cobieSmulders)-[:PLAYED_CHARACTER]->(robin)
+CREATE UNIQUE (neilPatrickHarris)-[:PLAYED_CHARACTER]->(barney)
+CREATE UNIQUE (alysonHannigan)-[:PLAYED_CHARACTER]->(lily)
+
+CREATE UNIQUE (himym)-[:HAS_SEASON]->(himym_s1)
+
+CREATE UNIQUE (himym_s1)-[:HAS_EPISODE]->(himym_s1_e1)
+
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(ted)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(marshall)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(robin)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(barney)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(lily)
+
+CREATE (himym_s1_e1_review1 {title: "Meet Me At The Bar In 15 Minutes & Suit Up", content: "It was awesome"})
+CREATE (wakenPayne:User {name: "WakenPayne"})
+
+CREATE (himym_s1_e1_review2 {title: "What a great pilot for a show :)", content: "The humour is great."})
+CREATE (atlasredux:User {name: "atlasredux"})
+
+CREATE (wakenPayne)-[:WROTE_REVIEW]->(himym_s1_e1_review1)<-[:HAS_REVIEW]-(himym_s1_e1)
+CREATE (atlasredux)-[:WROTE_REVIEW]->(himym_s1_e1_review2)<-[:HAS_REVIEW]-(himym_s1_e1)
+
+----
+
+//graph
