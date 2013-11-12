@@ -6,7 +6,7 @@ We wanted to see if our intuition was right and so with the help of Cypher, crea
 
 The TV show model is as follows:
 
-image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-11-09-at-7.09.27-PM.png
+image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-11-09-at-7.09.27-PM.png[]
 
 == The TV Series setup
 
