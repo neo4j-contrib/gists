@@ -83,3 +83,44 @@ RETURN season, episode, review
 ----
 
 //table
+
+== Chronological listing of all episodes
+
+Sarah’s next query was:
+
+Display a chronological listing of all of the episodes of all the different shows that an actor had ever been in.
+
+First let’s add another TV show that Josh Radnor appeared in:
+
+[source,cypher]
+----
+CREATE (er:TVShow {name: "ER"})
+CREATE (er_s9:Season {name: "ER S7"})
+CREATE (er_s9_e17:Episode {name: "Peter's Progress"})
+CREATE (tedMosby:Character {name: "The Advocate "})
+
+CREATE UNIQUE (er)-[:HAS_SEASON]->(er_s9)
+CREATE UNIQUE (er_s7)-[:HAS_EPISODE]->(er_s9_e17)
+
+WITH er_s9_e17
+
+MATCH (actor:Actor), (episode:Episode)
+WHERE actor.name = "Josh Radnor" AND episode.name = "Peter's Progress"
+WITH actor, episode
+
+CREATE (keith {name: "Keith"})
+CREATE UNIQUE (actor)-[:PLAYED_CHARACTER]->(keith)
+CREATE UNIQUE (episode)-[:FEATURED_CHARACTER]->(keith)
+----
+
+And now we’ll create a query to find the shows that he’s appeared in:
+
+[source,cypher]
+----
+MATCH (actor:Actor)-[:PLAYED_CHARACTER]->(character)<-[:FEATURED_CHARACTER]-(episode)
+WHERE actor.name = "Josh Radnor"
+RETURN episode.name, character.name
+----
+//table
+
+We could then easily add in more seasons, episodes and reviews if we wanted to.
