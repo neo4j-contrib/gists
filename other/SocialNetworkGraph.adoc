@@ -12,6 +12,8 @@ image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-
 
 == Social Network Setup
 
+// setup
+// hide
 [source,cypher]
 ----
 CREATE (rachel:User {name: "Rachel Green"})
@@ -93,6 +95,8 @@ WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post.text as content
 ----
 
+// table
+
 Our next query might be a slight variation on this to collect the people who have liked a post:
 
 [source,cypher]
@@ -101,6 +105,8 @@ MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)-[:LIKE]->(like)<-[:LIKED]-(liker
 WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post.text as content, COLLECT(liker.name) as liked_by
 ----
+
+// table
 
 A third query could collect all actions on a post, be they likes or comments:
 
@@ -111,6 +117,7 @@ WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post.text as content, COLLECT([action.text, person.name, TYPE(a)]) AS actions
 ----
 
+// table
 
 
 //graph
