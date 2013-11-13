@@ -4,7 +4,7 @@ Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-shoul
 
 We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of http://docs.neo4j.org/chunked/preview/cypher-query-lang.html[Cypher], created a mini version of each of the domains that Sarah described.
 
-This is the second of two GraphGists that respond to Sarah's blog post. If you would like to quickly jump to the first one that details the TV Show Graph data model, you can find it here: http://gist.neo4j.org/?github-kbastani%2Fgists%2F%2Fmeta%2Ftvshow.adoc[TV Show Graph]
+This is the second of two GraphGists that respond to Sarah's blog post. If you would like to quickly jump to the first one that details the TV Show Graph data model, you can find it here: http://gist.neo4j.org/?github-neo4j-contrib%2Fgists%2F%2Fother%2FTVShowGraph.adoc[TV Show Graph Diaspora example]
 
 == Social Network Data Model
 
