@@ -1,4 +1,4 @@
-= Social Network Graph
+= Social Network Graph Example from Diaspora
 
 Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modeled a collection of TV shows and a social network. A few of us at Neo felt strongly that these domains were very graphy in nature.
 
