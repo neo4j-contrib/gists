@@ -74,5 +74,16 @@ CREATE (post5)-[:comment]->(comment5:comment { id: "11", text: "lol" })-[:commen
 
 ----
 
+Now let's write some queries!
+
+We'll start with one to find the comments posted by Rachel's friends:
+
+[source,cypher]
+----
+MATCH (u:user)-[:friend]->(f)-[:posted]->(post)
+WHERE u.name = "Rachel Green"
+RETURN f, post
+----
+
 //graph
 
