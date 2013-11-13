@@ -59,6 +59,7 @@ CREATE (atlasredux)-[:WROTE_REVIEW]->(himym_s1_e1_review2)<-[:HAS_REVIEW]-(himym
 
 //graph
 
+image::https://raw.github.com/neo4j-contrib/gists/master/other/images/tv-show-graph-1.PNG[]
 
 == All info for a show
 
