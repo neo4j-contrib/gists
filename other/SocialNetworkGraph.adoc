@@ -112,9 +112,11 @@ A third query could collect all actions on a post, be they likes or comments:
 
 [source,cypher]
 ----
-MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)-[a:LIKE|:COMMENT]->(action)<-[:LIKED|:COMMENTED]->(person)
-WHERE u.name = "Rachel Green"
-RETURN f.name AS friend, post.text as content, COLLECT([action.text, person.name, TYPE(a)]) AS actions
+MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)-[a:LIKE|:COMMENT]->(action),
+      (action)<-[:LIKED|:COMMENTED]->(person) 
+WHERE u.name = "Rachel Green" 
+RETURN f.name AS friend, post.text AS content, 
+       COLLECT({ text: action.text, person: person.name, action: TYPE(a)}) AS actions
 ----
 
 // table
