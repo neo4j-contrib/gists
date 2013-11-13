@@ -92,7 +92,7 @@ We'll start with one to find the posts made by Rachel's friends:
 
 [source,cypher]
 ----
-MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)
 WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post.text as content
 ----
@@ -103,7 +103,7 @@ Our next query might be a slight variation on this to collect the people who hav
 
 [source,cypher]
 ----
-MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)<-[like:LIKED]-(liker)
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)<-[like:LIKED]-(liker)
 WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post.text as content, COLLECT(liker.name) as liked_by
 ----
@@ -114,7 +114,7 @@ A third query could collect all actions on a post, be they likes or comments:
 
 [source,cypher]
 ----
-MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)<-[a:LIKED|:COMMENTED]->(person) 
+MATCH (u:User)-[:FRIEND]-(f)-[:POSTED]->(post)<-[a:LIKED|:COMMENTED]->(person) 
 WHERE u.name = "Rachel Green" 
 RETURN f.name AS friend, post.text AS content, 
        COLLECT({ text: a.text, person: person.name, action: TYPE(a)}) AS actions
