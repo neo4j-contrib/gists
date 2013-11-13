@@ -1,0 +1,71 @@
+= Social Network Graph
+
+Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modeled a collection of TV shows and a social network. A few of us at Neo felt strongly that these domains were very graphy in nature.
+
+We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of http://docs.neo4j.org/chunked/preview/cypher-query-lang.html[Cypher], created a mini version of each of the domains that Sarah described.
+
+This is the second of two GraphGists that respond to Sarah's blog post. If you would like to quickly jump to the first one that details the TV Show Graph data model, you can find it here: http://gist.neo4j.org/?github-kbastani%2Fgists%2F%2Fmeta%2Ftvshow.adoc[TV Show Graph]
+
+== Social Network Data Model
+
+image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-11-09-at-8.11.30-PM.png[]
+
+== Social Network Setup
+
+[source,cypher]
+----
+CREATE (rachel:user {name: "Rachel Green"})
+CREATE (monica:user {name: "Monica Geller"})
+CREATE (phoebe:user {name: "Phoebe Buffay"})
+CREATE (joey:user {name: "Joey Tribbiani"})
+CREATE (chandler:user {name: "Chandler Bing"})
+CREATE (ross:user {name: "Ross Geller"})
+
+CREATE (rachel)-[:friend]->(monica)
+CREATE (rachel)-[:friend]->(phoebe)
+CREATE (rachel)-[:friend]->(joey)
+CREATE (rachel)-[:friend]->(chandler)
+CREATE (rachel)-[:friend]->(ross)
+
+CREATE (monica)-[:friend]->(rachel)
+CREATE (monica)-[:friend]->(phoebe)
+CREATE (monica)-[:friend]->(joey)
+CREATE (monica)-[:friend]->(chandler)
+CREATE (monica)-[:friend]->(ross)
+
+CREATE (phoebe)-[:friend]->(rachel)
+CREATE (phoebe)-[:friend]->(monica)
+CREATE (phoebe)-[:friend]->(joey)
+CREATE (phoebe)-[:friend]->(chandler)
+CREATE (phoebe)-[:friend]->(ross)
+
+CREATE (joey)-[:friend]->(monica)
+CREATE (joey)-[:friend]->(phoebe)
+CREATE (joey)-[:friend]->(rachel)
+CREATE (joey)-[:friend]->(chandler)
+CREATE (joey)-[:friend]->(ross)
+
+CREATE (chandler)-[:friend]->(monica)
+CREATE (chandler)-[:friend]->(phoebe)
+CREATE (chandler)-[:friend]->(joey)
+CREATE (chandler)-[:friend]->(rachel)
+CREATE (chandler)-[:friend]->(ross)
+
+CREATE (ross)-[:friend]->(monica)
+CREATE (ross)-[:friend]->(phoebe)
+CREATE (ross)-[:friend]->(joey)
+CREATE (ross)-[:friend]->(chandler)
+CREATE (ross)-[:friend]->(rachel)
+
+CREATE (monica)-[:posted]->(post0:post { id: "0", text: "You don't like the game, because you suck at it." })
+CREATE (phoebe)-[:posted]->(post1:post { id: "1", text: "Chandler still thinks I'm pregnant and he hasn't asked me how I'm feeling or offered to carry my bags. I feel bad for the woman who ends up with him." })
+CREATE (joey)-[:posted]->(post2:post { id: "2", text: "Just because she went to Yale drama, she thinks she's like the greatest actress since, since, sliced bread!" })
+CREATE (chandler)-[:posted]->(post3:post { id: "3", text: " In my defense, it was dark and he was a very pretty guy." })
+CREATE (rachel)-[:posted]->(post4:post { id: "4", text: "I'm Rachel." })
+CREATE (ross)-[:posted]->(post5:post { id: "5", text: "I'm Ross." })
+
+
+----
+
+//graph
+
