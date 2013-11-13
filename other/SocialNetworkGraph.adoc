@@ -72,6 +72,14 @@ CREATE (post3)-[:comment]->(comment3:comment { id: "9", text: "lol" })-[:comment
 CREATE (post4)-[:comment]->(comment4:comment { id: "10", text: "lol" })-[:commenter]->(phoebe)
 CREATE (post5)-[:comment]->(comment5:comment { id: "11", text: "lol" })-[:commenter]->(monica)
 
+
+// Likes
+CREATE (post0)-[:like]->(like0:like { id: "12", text: "Ross likes this." })-[:liker]->(ross)
+CREATE (post1)-[:like]->(like1:like { id: "13", text: "Rachel likes this." })-[:liker]->(rachel)
+CREATE (post2)-[:like]->(like2:like { id: "14", text: "Chandler likes this." })-[:liker]->(chandler)
+CREATE (post3)-[:like]->(like3:like { id: "15", text: "Joey likes this." })-[:liker]->(joey)
+CREATE (post4)-[:like]->(like4:like { id: "16", text: "Phoebe likes this." })-[:liker]->(phoebe)
+CREATE (post5)-[:like]->(like5:like { id: "17", text: "Monica likes this." })-[:liker]->(monica)
 ----
 
 Now let's write some queries!
