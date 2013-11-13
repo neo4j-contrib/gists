@@ -1,0 +1,128 @@
+= TV Show Graph
+
+Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modeled a collection of TV shows and a social network. A few of us at Neo felt strongly that these domains were very graphy in nature.
+
+We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of http://docs.neo4j.org/chunked/preview/cypher-query-lang.html[Cypher], created a mini version of each of the domains that Sarah described.
+
+This is the first of two GraphGists that respond to Sarah's blog post. If you would like to quickly jump to the second one that details the social networking data model, you can find it here: http://gist.neo4j.org/?github-neo4j-contrib%2Fgists%2F%2Fmeta%2Fsocialnetworkgraph.adoc[Social Network Graph]
+
+== TV Show Data Model
+
+image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-11-09-at-7.09.27-PM.png[]
+
+== The TV Series setup
+
+[source,cypher]
+----
+CREATE (himym:TVShow {name: "How I Met Your Mother"})
+CREATE (himym_s1:Season {name: "HIMYM Season 1"})
+CREATE (himym_s1_e1:Episode {name: "Pilot"})
+
+CREATE (ted:Character {name: "Ted Mosby"})
+CREATE (marshall:Character {name: "Marshall Eriksen"})
+CREATE (robin:Character {name: "Robin Scherbatsky"})
+CREATE (barney:Character {name: "Barney Stinson"})
+CREATE (lily:Character {name: "Lily Aldrin"})
+
+CREATE (joshRadnor:Actor {name: "Josh Radnor"})
+CREATE (jasonSegel:Actor {name: "Jason Segel"})
+CREATE (cobieSmulders:Actor {name: "Cobie Smulders"})
+CREATE (neilPatrickHarris:Actor {name: "Neil Patrick Harris"})
+CREATE (alysonHannigan:Actor {name: "Alyson Hannigan"})
+
+CREATE UNIQUE (joshRadnor)-[:PLAYED_CHARACTER]->(ted)
+CREATE UNIQUE (jasonSegel)-[:PLAYED_CHARACTER]->(marshall)
+CREATE UNIQUE (cobieSmulders)-[:PLAYED_CHARACTER]->(robin)
+CREATE UNIQUE (neilPatrickHarris)-[:PLAYED_CHARACTER]->(barney)
+CREATE UNIQUE (alysonHannigan)-[:PLAYED_CHARACTER]->(lily)
+
+CREATE UNIQUE (himym)-[:HAS_SEASON]->(himym_s1)
+
+CREATE UNIQUE (himym_s1)-[:HAS_EPISODE]->(himym_s1_e1)
+
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(ted)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(marshall)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(robin)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(barney)
+CREATE UNIQUE (himym_s1_e1)-[:FEATURED_CHARACTER]->(lily)
+
+CREATE (himym_s1_e1_review1 {title: "Meet Me At The Bar In 15 Minutes & Suit Up", content: "It was awesome"})
+CREATE (wakenPayne:User {name: "WakenPayne"})
+
+CREATE (himym_s1_e1_review2 {title: "What a great pilot for a show :)", content: "The humour is great."})
+CREATE (atlasredux:User {name: "atlasredux"})
+
+CREATE (wakenPayne)-[:WROTE_REVIEW]->(himym_s1_e1_review1)<-[:HAS_REVIEW]-(himym_s1_e1)
+CREATE (atlasredux)-[:WROTE_REVIEW]->(himym_s1_e1_review2)<-[:HAS_REVIEW]-(himym_s1_e1)
+
+----
+
+//graph
+
+
+== All info for a show
+
+For a particular TV show, show  all the seasons and all the episodes and all the reviews and all the cast members from that show i.e. all of the information connected to that TV show.
+
+[source,cypher]
+----
+MATCH (tvShow:TVShow)-[:HAS_SEASON]->(season)-[:HAS_EPISODE]->(episode)
+WHERE tvShow.name = "How I Met Your Mother"
+RETURN season, episode
+----
+
+//table
+
+We could also grab the reviews if there are any by slightly tweaking the query:
+
+[source,cypher]
+----
+MATCH (tvShow:TVShow)-[:HAS_SEASON]->(season)-[:HAS_EPISODE]->(episode)
+WHERE tvShow.name = "How I Met Your Mother"
+WITH season, episode
+MATCH episode-[?:HAS_REVIEW]->(review)
+RETURN season, episode, review
+----
+
+//table
+
+== Chronological listing of all episodes
+
+Sarah’s next query was:
+
+Display a chronological listing of all of the episodes of all the different shows that an actor had ever been in.
+
+First let’s add another TV show that Josh Radnor appeared in:
+
+[source,cypher]
+----
+CREATE (er:TVShow {name: "ER"})
+CREATE (er_s9:Season {name: "ER S7"})
+CREATE (er_s9_e17:Episode {name: "Peter's Progress"})
+CREATE (tedMosby:Character {name: "The Advocate "})
+
+CREATE UNIQUE (er)-[:HAS_SEASON]->(er_s9)
+CREATE UNIQUE (er_s7)-[:HAS_EPISODE]->(er_s9_e17)
+
+WITH er_s9_e17
+
+MATCH (actor:Actor), (episode:Episode)
+WHERE actor.name = "Josh Radnor" AND episode.name = "Peter's Progress"
+WITH actor, episode
+
+CREATE (keith {name: "Keith"})
+CREATE UNIQUE (actor)-[:PLAYED_CHARACTER]->(keith)
+CREATE UNIQUE (episode)-[:FEATURED_CHARACTER]->(keith)
+----
+
+And now we’ll create a query to find the shows that he’s appeared in:
+
+[source,cypher]
+----
+MATCH (actor:Actor)-[:PLAYED_CHARACTER]->(character)<-[:FEATURED_CHARACTER]-(episode)
+WHERE actor.name = "Josh Radnor"
+RETURN episode.name, character.name
+----
+//table
+
+We could then easily add in more seasons, episodes and reviews if we wanted to.
