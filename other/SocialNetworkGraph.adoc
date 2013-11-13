@@ -84,7 +84,7 @@ CREATE (post5)-[:like]->(like5:like { id: "17", text: "Monica likes this." })-[:
 
 Now let's write some queries!
 
-We'll start with one to find the comments posted by Rachel's friends:
+We'll start with one to find the posts made by Rachel's friends:
 
 [source,cypher]
 ----
@@ -93,7 +93,7 @@ WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post
 ----
 
-A simple variation on this might be to collect the people who have commented on a post as well:
+Our next query might be a slight variation on this to collect the people who have liked a post:
 
 [source,cypher]
 ----
@@ -101,6 +101,17 @@ MATCH (u:user)-[:friend]->(f)-[:posted]->(post)-[:like]->(like)-[:liker]->(liker
 WHERE u.name = "Rachel Green"
 RETURN f.name AS friend, post, COLLECT(liker)
 ----
+
+A third query could collect all actions on a post, be they likes or comments:
+
+[source,cypher]
+----
+MATCH (u:user)-[:friend]->(f)-[:posted]->(post)-[a:like|:comment]->(action)-[:liker|:commenter]->(person)
+WHERE u.name = "Rachel Green"
+RETURN f.name AS friend, post.text, COLLECT([action.text, person.name, TYPE(a)]) AS actions
+----
+
+
 
 //graph
 
