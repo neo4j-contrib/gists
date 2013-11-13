@@ -64,6 +64,14 @@ CREATE (chandler)-[:posted]->(post3:post { id: "3", text: " In my defense, it wa
 CREATE (rachel)-[:posted]->(post4:post { id: "4", text: "I don't want my baby's first words to be 'How You Doing'" })
 CREATE (ross)-[:posted]->(post5:post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
 
+// Comments
+CREATE (post0)-[:comment]->(comment0:comment { id: "6", text: "lol" })-[:commenter]->(ross)
+CREATE (post1)-[:comment]->(comment1:comment { id: "7", text: "lol" })-[:commenter]->(rachel)
+CREATE (post2)-[:comment]->(comment2:comment { id: "8", text: "lol" })-[:commenter]->(chandler)
+CREATE (post3)-[:comment]->(comment3:comment { id: "9", text: "lol" })-[:commenter]->(joey)
+CREATE (post4)-[:comment]->(comment4:comment { id: "10", text: "lol" })-[:commenter]->(phoebe)
+CREATE (post5)-[:comment]->(comment5:comment { id: "11", text: "lol" })-[:commenter]->(monica)
+
 ----
 
 //graph
