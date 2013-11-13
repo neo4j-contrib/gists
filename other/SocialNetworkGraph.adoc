@@ -84,6 +84,8 @@ CREATE (post4)<-[:LIKED{ id: "16", text: "Phoebe likes this." }]-(phoebe)
 CREATE (post5)<-[:LIKED{ id: "17", text: "Monica likes this." }]-(monica)
 ----
 
+image::https://raw.github.com/neo4j-contrib/gists/master/other/images/social-network-graph-1.png[]
+
 Now let's write some queries!
 
 We'll start with one to find the posts made by Rachel's friends:
