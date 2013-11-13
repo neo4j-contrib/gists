@@ -67,21 +67,21 @@ CREATE (rachel)-[:POSTED]->(post4:Post { id: "4", text: "I don't want my baby's 
 CREATE (ross)-[:POSTED]->(post5:Post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
 
 // Comments
-CREATE (post0)-[:COMMENT]->(comment0:Comment { id: "6", text: "lol" })<-[:COMMENTED]-(ross)
-CREATE (post1)-[:COMMENT]->(comment1:Comment { id: "7", text: "lol" })<-[:COMMENTED]-(rachel)
-CREATE (post2)-[:COMMENT]->(comment2:Comment { id: "8", text: "lol" })<-[:COMMENTED]-(chandler)
-CREATE (post3)-[:COMMENT]->(comment3:Comment { id: "9", text: "lol" })<-[:COMMENTED]-(joey)
-CREATE (post4)-[:COMMENT]->(comment4:Comment { id: "10", text: "lol" })<-[:COMMENTED]-(phoebe)
-CREATE (post5)-[:COMMENT]->(comment5:Comment { id: "11", text: "lol" })<-[:COMMENTED]-(monica)
+CREATE (post0)<-[:COMMENTED{ id: "6", text: "lol" }]-(ross)
+CREATE (post1)<-[:COMMENTED{ id: "7", text: "lol" }]-(rachel)
+CREATE (post2)<-[:COMMENTED{ id: "8", text: "lol" }]-(chandler)
+CREATE (post3)<-[:COMMENTED{ id: "9", text: "lol" }]-(joey)
+CREATE (post4)<-[:COMMENTED{ id: "10", text: "lol" }]-(phoebe)
+CREATE (post5)<-[:COMMENTED{ id: "11", text: "lol" }]-(monica)
 
 
 // Likes
-CREATE (post0)-[:LIKE]->(like0:like { id: "12", text: "Ross likes this." })<-[:LIKED]-(ross)
-CREATE (post1)-[:LIKE]->(like1:like { id: "13", text: "Rachel likes this." })<-[:LIKED]-(rachel)
-CREATE (post2)-[:LIKE]->(like2:like { id: "14", text: "Chandler likes this." })<-[:LIKED]-(chandler)
-CREATE (post3)-[:LIKE]->(like3:like { id: "15", text: "Joey likes this." })<-[:LIKED]-(joey)
-CREATE (post4)-[:LIKE]->(like4:like { id: "16", text: "Phoebe likes this." })<-[:LIKED]-(phoebe)
-CREATE (post5)-[:LIKE]->(like5:like { id: "17", text: "Monica likes this." })<-[:LIKED]-(monica)
+CREATE (post0)<-[:LIKED{ id: "12", text: "Ross likes this." }]-(ross)
+CREATE (post1)<-[:LIKED{ id: "13", text: "Rachel likes this." }]-(rachel)
+CREATE (post2)<-[:LIKED{ id: "14", text: "Chandler likes this." }]-(chandler)
+CREATE (post3)<-[:LIKED{ id: "15", text: "Joey likes this." }]-(joey)
+CREATE (post4)<-[:LIKED{ id: "16", text: "Phoebe likes this." }]-(phoebe)
+CREATE (post5)<-[:LIKED{ id: "17", text: "Monica likes this." }]-(monica)
 ----
 
 Now let's write some queries!
