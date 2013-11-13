@@ -61,9 +61,8 @@ CREATE (monica)-[:posted]->(post0:post { id: "0", text: "You don't like the game
 CREATE (phoebe)-[:posted]->(post1:post { id: "1", text: "Chandler still thinks I'm pregnant and he hasn't asked me how I'm feeling or offered to carry my bags. I feel bad for the woman who ends up with him." })
 CREATE (joey)-[:posted]->(post2:post { id: "2", text: "Just because she went to Yale drama, she thinks she's like the greatest actress since, since, sliced bread!" })
 CREATE (chandler)-[:posted]->(post3:post { id: "3", text: " In my defense, it was dark and he was a very pretty guy." })
-CREATE (rachel)-[:posted]->(post4:post { id: "4", text: "I'm Rachel." })
-CREATE (ross)-[:posted]->(post5:post { id: "5", text: "I'm Ross." })
-
+CREATE (rachel)-[:posted]->(post4:post { id: "4", text: "I don't want my baby's first words to be 'How You Doing'" })
+CREATE (ross)-[:posted]->(post5:post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
 
 ----
 
