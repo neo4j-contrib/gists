@@ -14,72 +14,72 @@ image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-
 
 [source,cypher]
 ----
-CREATE (rachel:user {name: "Rachel Green"})
-CREATE (monica:user {name: "Monica Geller"})
-CREATE (phoebe:user {name: "Phoebe Buffay"})
-CREATE (joey:user {name: "Joey Tribbiani"})
-CREATE (chandler:user {name: "Chandler Bing"})
-CREATE (ross:user {name: "Ross Geller"})
+CREATE (rachel:User {name: "Rachel Green"})
+CREATE (monica:User {name: "Monica Geller"})
+CREATE (phoebe:User {name: "Phoebe Buffay"})
+CREATE (joey:User {name: "Joey Tribbiani"})
+CREATE (chandler:User {name: "Chandler Bing"})
+CREATE (ross:User {name: "Ross Geller"})
 
-CREATE (rachel)-[:friend]->(monica)
-CREATE (rachel)-[:friend]->(phoebe)
-CREATE (rachel)-[:friend]->(joey)
-CREATE (rachel)-[:friend]->(chandler)
-CREATE (rachel)-[:friend]->(ross)
+CREATE (rachel)-[:FRIEND]->(monica)
+CREATE (rachel)-[:FRIEND]->(phoebe)
+CREATE (rachel)-[:FRIEND]->(joey)
+CREATE (rachel)-[:FRIEND]->(chandler)
+CREATE (rachel)-[:FRIEND]->(ross)
 
-CREATE (monica)-[:friend]->(rachel)
-CREATE (monica)-[:friend]->(phoebe)
-CREATE (monica)-[:friend]->(joey)
-CREATE (monica)-[:friend]->(chandler)
-CREATE (monica)-[:friend]->(ross)
+CREATE (monica)-[:FRIEND]->(rachel)
+CREATE (monica)-[:FRIEND]->(phoebe)
+CREATE (monica)-[:FRIEND]->(joey)
+CREATE (monica)-[:FRIEND]->(chandler)
+CREATE (monica)-[:FRIEND]->(ross)
 
-CREATE (phoebe)-[:friend]->(rachel)
-CREATE (phoebe)-[:friend]->(monica)
-CREATE (phoebe)-[:friend]->(joey)
-CREATE (phoebe)-[:friend]->(chandler)
-CREATE (phoebe)-[:friend]->(ross)
+CREATE (phoebe)-[:FRIEND]->(rachel)
+CREATE (phoebe)-[:FRIEND]->(monica)
+CREATE (phoebe)-[:FRIEND]->(joey)
+CREATE (phoebe)-[:FRIEND]->(chandler)
+CREATE (phoebe)-[:FRIEND]->(ross)
 
-CREATE (joey)-[:friend]->(monica)
-CREATE (joey)-[:friend]->(phoebe)
-CREATE (joey)-[:friend]->(rachel)
-CREATE (joey)-[:friend]->(chandler)
-CREATE (joey)-[:friend]->(ross)
+CREATE (joey)-[:FRIEND]->(monica)
+CREATE (joey)-[:FRIEND]->(phoebe)
+CREATE (joey)-[:FRIEND]->(rachel)
+CREATE (joey)-[:FRIEND]->(chandler)
+CREATE (joey)-[:FRIEND]->(ross)
 
-CREATE (chandler)-[:friend]->(monica)
-CREATE (chandler)-[:friend]->(phoebe)
-CREATE (chandler)-[:friend]->(joey)
-CREATE (chandler)-[:friend]->(rachel)
-CREATE (chandler)-[:friend]->(ross)
+CREATE (chandler)-[:FRIEND]->(monica)
+CREATE (chandler)-[:FRIEND]->(phoebe)
+CREATE (chandler)-[:FRIEND]->(joey)
+CREATE (chandler)-[:FRIEND]->(rachel)
+CREATE (chandler)-[:FRIEND]->(ross)
 
-CREATE (ross)-[:friend]->(monica)
-CREATE (ross)-[:friend]->(phoebe)
-CREATE (ross)-[:friend]->(joey)
-CREATE (ross)-[:friend]->(chandler)
-CREATE (ross)-[:friend]->(rachel)
+CREATE (ross)-[:FRIEND]->(monica)
+CREATE (ross)-[:FRIEND]->(phoebe)
+CREATE (ross)-[:FRIEND]->(joey)
+CREATE (ross)-[:FRIEND]->(chandler)
+CREATE (ross)-[:FRIEND]->(rachel)
 
-CREATE (monica)-[:posted]->(post0:post { id: "0", text: "You don't like the game, because you suck at it." })
-CREATE (phoebe)-[:posted]->(post1:post { id: "1", text: "Chandler still thinks I'm pregnant and he hasn't asked me how I'm feeling or offered to carry my bags. I feel bad for the woman who ends up with him." })
-CREATE (joey)-[:posted]->(post2:post { id: "2", text: "Just because she went to Yale drama, she thinks she's like the greatest actress since, since, sliced bread!" })
-CREATE (chandler)-[:posted]->(post3:post { id: "3", text: " In my defense, it was dark and he was a very pretty guy." })
-CREATE (rachel)-[:posted]->(post4:post { id: "4", text: "I don't want my baby's first words to be 'How You Doing'" })
-CREATE (ross)-[:posted]->(post5:post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
+CREATE (monica)-[:POSTED]->(post0:Post { id: "0", text: "You don't like the game, because you suck at it." })
+CREATE (phoebe)-[:POSTED]->(post1:Post { id: "1", text: "Chandler still thinks I'm pregnant and he hasn't asked me how I'm feeling or offered to carry my bags. I feel bad for the woman who ends up with him." })
+CREATE (joey)-[:POSTED]->(post2:Post { id: "2", text: "Just because she went to Yale drama, she thinks she's like the greatest actress since, since, sliced bread!" })
+CREATE (chandler)-[:POSTED]->(post3:Post { id: "3", text: " In my defense, it was dark and he was a very pretty guy." })
+CREATE (rachel)-[:POSTED]->(post4:Post { id: "4", text: "I don't want my baby's first words to be 'How You Doing'" })
+CREATE (ross)-[:POSTED]->(post5:Post { id: "5", text: "Chandler entered a Vanilla Ice look-alike contest and *won*!" })
 
 // Comments
-CREATE (post0)-[:comment]->(comment0:comment { id: "6", text: "lol" })-[:commenter]->(ross)
-CREATE (post1)-[:comment]->(comment1:comment { id: "7", text: "lol" })-[:commenter]->(rachel)
-CREATE (post2)-[:comment]->(comment2:comment { id: "8", text: "lol" })-[:commenter]->(chandler)
-CREATE (post3)-[:comment]->(comment3:comment { id: "9", text: "lol" })-[:commenter]->(joey)
-CREATE (post4)-[:comment]->(comment4:comment { id: "10", text: "lol" })-[:commenter]->(phoebe)
-CREATE (post5)-[:comment]->(comment5:comment { id: "11", text: "lol" })-[:commenter]->(monica)
+CREATE (post0)-[:COMMENT]->(comment0:Comment { id: "6", text: "lol" })<-[:COMMENTED]-(ross)
+CREATE (post1)-[:COMMENT]->(comment1:Comment { id: "7", text: "lol" })<-[:COMMENTED]-(rachel)
+CREATE (post2)-[:COMMENT]->(comment2:Comment { id: "8", text: "lol" })<-[:COMMENTED]-(chandler)
+CREATE (post3)-[:COMMENT]->(comment3:Comment { id: "9", text: "lol" })<-[:COMMENTED]-(joey)
+CREATE (post4)-[:COMMENT]->(comment4:Comment { id: "10", text: "lol" })<-[:COMMENTED]-(phoebe)
+CREATE (post5)-[:COMMENT]->(comment5:Comment { id: "11", text: "lol" })<-[:COMMENTED]-(monica)
 
 
 // Likes
-CREATE (post0)-[:like]->(like0:like { id: "12", text: "Ross likes this." })-[:liker]->(ross)
-CREATE (post1)-[:like]->(like1:like { id: "13", text: "Rachel likes this." })-[:liker]->(rachel)
-CREATE (post2)-[:like]->(like2:like { id: "14", text: "Chandler likes this." })-[:liker]->(chandler)
-CREATE (post3)-[:like]->(like3:like { id: "15", text: "Joey likes this." })-[:liker]->(joey)
-CREATE (post4)-[:like]->(like4:like { id: "16", text: "Phoebe likes this." })-[:liker]->(phoebe)
-CREATE (post5)-[:like]->(like5:like { id: "17", text: "Monica likes this." })-[:liker]->(monica)
+CREATE (post0)-[:LIKE]->(like0:like { id: "12", text: "Ross likes this." })<-[:LIKED]-(ross)
+CREATE (post1)-[:LIKE]->(like1:like { id: "13", text: "Rachel likes this." })<-[:LIKED]-(rachel)
+CREATE (post2)-[:LIKE]->(like2:like { id: "14", text: "Chandler likes this." })<-[:LIKED]-(chandler)
+CREATE (post3)-[:LIKE]->(like3:like { id: "15", text: "Joey likes this." })<-[:LIKED]-(joey)
+CREATE (post4)-[:LIKE]->(like4:like { id: "16", text: "Phoebe likes this." })<-[:LIKED]-(phoebe)
+CREATE (post5)-[:LIKE]->(like5:like { id: "17", text: "Monica likes this." })<-[:LIKED]-(monica)
 ----
 
 Now let's write some queries!
@@ -88,27 +88,27 @@ We'll start with one to find the posts made by Rachel's friends:
 
 [source,cypher]
 ----
-MATCH (u:user)-[:friend]->(f)-[:posted]->(post)
+MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)
 WHERE u.name = "Rachel Green"
-RETURN f.name AS friend, post
+RETURN f.name AS friend, post.text as content
 ----
 
 Our next query might be a slight variation on this to collect the people who have liked a post:
 
 [source,cypher]
 ----
-MATCH (u:user)-[:friend]->(f)-[:posted]->(post)-[:like]->(like)-[:liker]->(liker)
+MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)-[:LIKE]->(like)<-[:LIKED]-(liker)
 WHERE u.name = "Rachel Green"
-RETURN f.name AS friend, post, COLLECT(liker)
+RETURN f.name AS friend, post.text as content, COLLECT(liker.name) as liked_by
 ----
 
 A third query could collect all actions on a post, be they likes or comments:
 
 [source,cypher]
 ----
-MATCH (u:user)-[:friend]->(f)-[:posted]->(post)-[a:like|:comment]->(action)-[:liker|:commenter]->(person)
+MATCH (u:User)-[:FRIEND]->(f)-[:POSTED]->(post)-[a:LIKE|:COMMENT]->(action)<-[:LIKED|:COMMENTED]->(person)
 WHERE u.name = "Rachel Green"
-RETURN f.name AS friend, post.text, COLLECT([action.text, person.name, TYPE(a)]) AS actions
+RETURN f.name AS friend, post.text as content, COLLECT([action.text, person.name, TYPE(a)]) AS actions
 ----
 
 
