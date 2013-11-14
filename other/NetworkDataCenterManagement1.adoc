@@ -49,11 +49,14 @@ RETURN *
 
 ----
 
+//graph
+
 === Query 1
 
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 === Query 2
@@ -61,7 +64,8 @@ RETURN *
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 === Query 3
@@ -69,7 +73,8 @@ RETURN *
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 
@@ -84,7 +89,8 @@ RETURN *
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 === Query 5
@@ -92,7 +98,8 @@ RETURN *
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 
@@ -101,19 +108,18 @@ RETURN *
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
 
 === Query 7
 
-Let's find products that other people viewed who also viewed the product named 'pair of red heels'.
-
 //output
 [source,cypher]
 ----
-
+MATCH node0-[r]->node1
+RETURN *
 ----
-
 
 === Concluding Remarks
 
