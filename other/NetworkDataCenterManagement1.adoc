@@ -16,7 +16,7 @@ Explain the Neo4j solution to the scenario as a brief summary.
 
 == Image of Data Models 1
 
-image::https://raw.github.com/neo4j-contrib/gists/master/other/images/network-inventory-cost-accounting-graph-1.png[]
+image::https://raw.github.com/neo4j-contrib/gists/master/other/images/network-inventory-cost-accounting-graph-1.PNG[]
 
 == Cypher Query Setup
 
