@@ -14,7 +14,7 @@ Explain the scenario you are about to cover.
 
 Explain the Neo4j solution to the scenario as a brief summary.
 
-== Image of Data Models 1
+== Network Inventory Data Model
 
 image::https://raw.github.com/neo4j-contrib/gists/master/other/images/network-inventory-cost-accounting-graph-1.PNG[]
 
@@ -24,120 +24,36 @@ image::https://raw.github.com/neo4j-contrib/gists/master/other/images/network-in
 //setup
 [source,cypher]
 ----
-CREATE (a:a { key:'a0', tempo:'0' }) 
-CREATE (a)<-[:child_of]-(b0:b { key:'b0', tempo:'0' }) 
-CREATE (a)<-[:child_of]-(b1:b { key:'b1', tempo:'1' }) 
-CREATE b0<-[:child_of]-(c0:c { key:'c0', tempo:'0' }) 
-CREATE b0<-[:child_of]-(c1:c { key:'c1', tempo:'1' }) 
-CREATE b1<-[:child_of]-(c2:c { key:'c2', tempo:'0' }) 
-CREATE b1<-[:child_of]-(c3:c { key:'c3', tempo:'1' }) 
-CREATE (d0:d { key:'d0', tempo:'0', interval:'50' }),(d1:d { key:'d1', tempo:'1', interval:'50' }) 
-CREATE (d2:d { key:'d2', tempo:'0', interval:'50' }),(d3:d { key:'d3', tempo:'1', interval:'50' }) 
-CREATE (d4:d { key:'d4', tempo:'0', interval:'50' }),(d5:d { key:'d5', tempo:'1', interval:'50' }) 
-CREATE (d6:d { key:'d6', tempo:'0', interval:'50' }),(d7:d { key:'d7', tempo:'1', interval:'50' }) 
-CREATE c0<-[:child_of]-d0, c0<-[:child_of]-d1 
-CREATE c1<-[:child_of]-d2, c1<-[:child_of]-d3 
-CREATE c2<-[:child_of]-d4, c2<-[:child_of]-d5 
-CREATE c3<-[:child_of]-d6, c3<-[:child_of]-d7 
-CREATE d0-[:NEXT]->d1-[:NEXT]->d2-[:NEXT]->d3-[:NEXT]->d4-[:NEXT]->d5-[:NEXT]->d6-[:NEXT]->d7 
-CREATE (a1:a { key:'a1', tempo:'1' }) 
-CREATE (a1)<-[:child_of]-(b2:b { key:'b2', tempo:'0' }) 
-CREATE (a1)<-[:child_of]-(b3:b { key:'b3', tempo:'1' }) 
-CREATE (z0:z { key: 'z0' , tempo:'0' })<-[:child_of]-(a1) 
-CREATE (y0:y { key: 'y0' , tempo:'0' })<-[:child_of]-(z0) 
-CREATE (z0)<-[:child_of]-(a) 
-CREATE b2<-[:child_of]-(c4:c { key:'c4', tempo:'0' }) 
-CREATE b2<-[:child_of]-(c5:c { key:'c5', tempo:'1' }) 
-CREATE b3<-[:child_of]-(c6:c { key:'c6', tempo:'0' }) 
-CREATE b3<-[:child_of]-(c7:c { key:'c7', tempo:'1' }) 
-CREATE (d8:d { key:'d8', tempo:'0', interval:'50' }),(d9:d { key:'d9', tempo:'1', interval:'50' }) 
-CREATE (d10:d { key:'d10', tempo:'0', interval:'50' }),(d11:d { key:'d11', tempo:'1', interval:'50' }) 
-CREATE (d12:d { key:'d12', tempo:'0', interval:'50' }),(d13:d { key:'d13', tempo:'1', interval:'50' }) 
-CREATE (d14:d { key:'d14', tempo:'0', interval:'50' }),(d15:d { key:'d15', tempo:'1', interval:'50' }) 
-CREATE c4<-[:child_of]-d8, c4<-[:child_of]-d9 
-CREATE c5<-[:child_of]-d10, c5<-[:child_of]-d11 
-CREATE c6<-[:child_of]-d12, c6<-[:child_of]-d13 
-CREATE c7<-[:child_of]-d14, c7<-[:child_of]-d15 
-CREATE d7-[:NEXT]->d8-[:NEXT]->d9-[:NEXT]->d10-[:NEXT]->d11-[:NEXT]->d12-[:NEXT]->d13-[:NEXT]->d14-[:NEXT]->d15 
-CREATE (a2:a { key:'a2', tempo:'0' }) 
-CREATE (a2)<-[:child_of]-(b4:b { key:'b4', tempo:'0' }) 
-CREATE (a2)<-[:child_of]-(b5:b { key:'b5', tempo:'1' }) 
-CREATE (z1:z { key: 'z1' , tempo:'1' })<-[:child_of]-(a2) 
-CREATE y0<-[:child_of]-z1 
-CREATE b4<-[:child_of]-(c8:c { key:'c8', tempo:'0' }) 
-CREATE b4<-[:child_of]-(c9:c { key:'c9', tempo:'1' }) 
-CREATE b5<-[:child_of]-(c10:c { key:'c10', tempo:'0' }) 
-CREATE b5<-[:child_of]-(c11:c { key:'c11', tempo:'1' }) 
-CREATE (d16:d { key:'d16', tempo:'0', interval:'50' }),(d17:d { key:'d17', tempo:'1', interval:'50' }) 
-CREATE (d18:d { key:'d18', tempo:'0', interval:'50' }),(d19:d { key:'d19', tempo:'1', interval:'50' }) 
-CREATE (d20:d { key:'d20', tempo:'0', interval:'50' }),(d21:d { key:'d21', tempo:'1', interval:'50' }) 
-CREATE (d22:d { key:'d22', tempo:'0', interval:'50' }),(d23:d { key:'d23', tempo:'1', interval:'50' }) 
-CREATE c8<-[:child_of]-d16, c8<-[:child_of]-d17 
-CREATE c9<-[:child_of]-d18, c9<-[:child_of]-d19 
-CREATE c10<-[:child_of]-d20, c10<-[:child_of]-d21 
-CREATE c11<-[:child_of]-d22, c11<-[:child_of]-d23 
-CREATE d15-[:NEXT]->d16-[:NEXT]->d17-[:NEXT]->d18-[:NEXT]->d19-[:NEXT]->d20-[:NEXT]->d21-[:NEXT]->d22-[:NEXT]->d23 
-CREATE (a3:a { key:'a3', tempo:'1' }) 
-CREATE (a3)<-[:child_of]-(b6:b { key:'b6', tempo:'0' }) 
-CREATE (a3)<-[:child_of]-(b7:b { key:'b7', tempo:'1' }) 
-CREATE (z1)<-[:child_of]-(a3) 
-CREATE b6<-[:child_of]-(c12:c { key:'c12', tempo:'0' }) 
-CREATE b6<-[:child_of]-(c13:c { key:'c13', tempo:'1' }) 
-CREATE b7<-[:child_of]-(c14:c { key:'c14', tempo:'0' }) 
-CREATE b7<-[:child_of]-(c15:c { key:'c15', tempo:'1' }) 
-CREATE (d24:d { key:'d24', tempo:'0', interval:'50' }),(d25:d { key:'d25', tempo:'1', interval:'50' }) 
-CREATE (d26:d { key:'d26', tempo:'0', interval:'50' }),(d27:d { key:'d27', tempo:'1', interval:'50' }) 
-CREATE (d28:d { key:'d28', tempo:'0', interval:'50' }),(d29:d { key:'d29', tempo:'1', interval:'50' }) 
-CREATE (d30:d { key:'d30', tempo:'0', interval:'50' }),(d31:d { key:'d31', tempo:'1', interval:'50' }) 
-CREATE c12<-[:child_of]-d24, c12<-[:child_of]-d25 
-CREATE c13<-[:child_of]-d26, c13<-[:child_of]-d27 
-CREATE c14<-[:child_of]-d28, c14<-[:child_of]-d29 
-CREATE c15<-[:child_of]-d30, c15<-[:child_of]-d31 
-CREATE d23-[:NEXT]->d24-[:NEXT]->d25-[:NEXT]->d26-[:NEXT]->d27-[:NEXT]->d28-[:NEXT]->d29-[:NEXT]->d30-[:NEXT]->d31 
-CREATE (met0:event:met { key:'met0', verb:'meet', past:'has met', present:'meets', future:'will meet' })-[:event]->d0 
-CREATE (met1:event:met { key:'met1', verb:'meet', past:'has met', present:'meets', future:'will meet' })-[:event]->d5 
-CREATE (met2:event:met { key:'met2', verb:'meet', past:'has met', present:'meets', future:'will meet' })-[:event]->d9 
-CREATE (met3:event:met { key:'met3', verb:'meet', past:'has met', present:'meets', future:'will meet' })-[:event]->d14 
-CREATE (person:class { key:'person', plural:'People', singular:'Person' }) 
-CREATE (sally:person { key:'person0', name:'Sally' })-[:class_of]->person 
-CREATE (anne:person { key:'person1', name:'Anne' })-[:class_of]->person 
-CREATE (john:person { key:'person2', name:'John' })-[:class_of]->person 
-CREATE (pam:person { key: 'person3' , name:'Pam' })-[:class_of]->person 
-CREATE (product:class { key:'product', plural:'Products', singular:'Product' }) 
-CREATE (shoe:product:shoes { key:'product0', name:'pair of red heels' })-[:class_of]->product 
-CREATE (hat:product:hats { key:'product1', name:'sombrero' })-[:class_of]->product
-CREATE (headphone:product:headphones { key:'product1', name:'noise cancelling headphones' })-[:class_of]->product
-CREATE (coffeemug:product:coffeemugs { key:'product1', name:'i heart neo4j coffee mug' })-[:class_of]->product
-CREATE (view0:event:view { key:'view0', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d16 
-CREATE (view1:event:view { key:'view1', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d17 
-CREATE (view2:event:view { key:'view2', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d18 
-CREATE (view3:event:view { key:'view3', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d21 
-CREATE (view4:event:view { key:'view4', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d22 
-CREATE (view5:event:view { key:'view5', verb:'view', past:'has viewed', present:'is viewing', future:'will view' })-[:event]->d23 
-CREATE (buy0:event:buy { key:'buy0', verb:'buy', past:'bought', present:'is buying', future:'will buy' })-[:event]->d19 
-CREATE (buy1:event:buy { key:'buy1', verb:'buy', past:'bought', present:'is buying', future:'will buy' })-[:event]->d24 
-CREATE anne-[:event]->met0-[:event]->pam 
-CREATE pam-[:event]->met1-[:event]->sally 
-CREATE sally-[:event]->met2-[:event]->anne 
-CREATE john-[:event]->met3-[:event]->sally 
-CREATE pam-[:event]->view0-[:event]->shoe
-CREATE pam-[:event]->view3-[:event]->headphone
-CREATE pam-[:event]->view4-[:event]->coffeemug
-CREATE pam-[:event]->buy0-[:event]->shoe 
-CREATE sally-[:event]->view1-[:event]->shoe 
-CREATE sally-[:event]->view2-[:event]->hat 
-CREATE sally-[:event]->buy1-[:event]->hat
-CREATE sally-[:event]->view5-[:event]->coffeemug
+CREATE (service1:Service { ipv4:'0.0.0.0', dns:'NT-USA01-SVC01'}) 
+CREATE (router1:Router { ipv4:'0.0.0.1', dns:'NT-USA01-RTE01'}) 
+CREATE (router2:Router { ipv4:'0.0.0.2', dns:'NT-USA01-RTE02'}) 
+CREATE (fiberlink1:FiberLink { ipv4:'0.0.0.3', dns:'NT-USA01-FLN01'}) 
+CREATE (fiberlink2:FiberLink { ipv4:'0.0.0.4', dns:'NT-USA01-FLN02'})
+CREATE (fiberlink3:FiberLink { ipv4:'0.0.0.5', dns:'NT-USA01-FLN03'})
+CREATE (switch1:Switch { ipv4:'0.0.0.6', dns:'NT-USA01-SWC01'}) 
+CREATE (switch2:Switch { ipv4:'0.0.0.7', dns:'NT-USA01-SWC02'})
+CREATE (oceanfloorcable1:OceanfloorCable { ipv4:'10.10.10.10', dns:'OCEANFLOOR-CBL-01'})
+
+CREATE (router1)<-[:DEPENDS_ON]-(service1)-[:DEPENDS_ON]->(router2)
+CREATE (router1)-[:DEPENDS_ON]->(fiberlink1)
+CREATE (router1)-[:LINKED]->(switch1)
+CREATE (router2)-[:DEPENDS_ON]->(fiberlink2)
+CREATE (router2)<-[:LINKED]-(switch2)
+CREATE (fiberlink1)<-[:DEPENDS_ON]-(switch1)
+CREATE (switch1)-[:LINKED]->(switch2)
+CREATE (switch2)-[:DEPENDS_ON]->(fiberlink2)
+CREATE (switch1)-[:DEPENDS_ON]->(fiberlink3)<-[:DEPENDS_ON]-(switch2)
+CREATE (fiberlink2)-[:DEPENDS_ON]->(oceanfloorcable1)
+
 RETURN *
+
 ----
 
 === Query 1
 
 [source,cypher]
 ----
-MATCH p=shortestPath((n1:d)-[:child_of*]->(n2:y)) 
-WHERE n1.key = 'd10' 
-RETURN p
+
 ----
 
 === Query 2
@@ -145,10 +61,7 @@ RETURN p
 //output
 [source,cypher]
 ----
-MATCH p=shortestPath((n1:d)-[:child_of*]->(n2:y)) 
-WHERE n1.key = 'd10' 
-RETURN DISTINCT reduce(s = '' , n IN nodes(p)| n.tempo + s) AS TimeIdentity 
-ORDER BY TimeIdentity
+
 ----
 
 === Query 3
@@ -156,9 +69,7 @@ ORDER BY TimeIdentity
 //output
 [source,cypher]
 ----
-MATCH p=shortestPath((n1:d)-[:child_of*]->(n2:y)) 
-RETURN DISTINCT reduce(s = '' , n IN nodes(p)| n.tempo + s) AS TimeIdentity 
-ORDER BY TimeIdentity
+
 ----
 
 
@@ -173,13 +84,7 @@ ORDER BY TimeIdentity
 //output
 [source,cypher]
 ----
-MATCH p=(p0:person)-[:event]->(ev)-[:event]->(p1:person)
-WITH p, ev
-MATCH time_identity = (d0:d)<-[:event]-(ev)
-WITH d0, p
-MATCH p1=(d0)-[:child_of*]->(y0:y)
-RETURN extract(x IN nodes(p)| coalesce(x.name, x.future)) AS Interaction, reduce(s = '' , n IN nodes(p1)| n.tempo + s) AS TimeIdentity
-ORDER BY TimeIdentity
+
 ----
 
 === Query 5
@@ -187,13 +92,7 @@ ORDER BY TimeIdentity
 //output
 [source,cypher]
 ----
-MATCH p=(p0:person)-[:event]->(ev)-[:event]->(p1:product)
-WITH p, ev
-MATCH time_identity = (d0:d)<-[:event]-(ev)
-WITH d0, p
-MATCH p1=(d0)-[:child_of*]->(y0:y)
-RETURN extract(x IN nodes(p)| coalesce(x.name, x.future)) AS Interaction, reduce(s = '' , n IN nodes(p1)| n.tempo + s) AS TimeIdentity
-ORDER BY TimeIdentity
+
 ----
 
 
@@ -202,13 +101,7 @@ ORDER BY TimeIdentity
 //output
 [source,cypher]
 ----
-MATCH p=(p0:person)-[:event]->(ev:view)-[:event]->(p1:product)
-WITH p, ev
-MATCH time_identity = (d0:d)<-[:event]-(ev)
-WITH d0, p
-MATCH p1=(d0)-[:child_of*]->(y0:y)
-RETURN extract(x IN nodes(p)| coalesce(x.name, x.past)) AS Interaction, reduce(s = '' , n IN nodes(p1)| n.tempo + s) AS TimeIdentity
-ORDER BY TimeIdentity
+
 ----
 
 === Query 7
@@ -218,13 +111,7 @@ Let's find products that other people viewed who also viewed the product named '
 //output
 [source,cypher]
 ----
-MATCH p=(p0:person)-[:event]->(ev:view)-[:event]->(p1:product) 
-WITH p0, p1 
-WHERE p1.name = 'pair of red heels' 
-WITH p0 
-MATCH p0-[:event]->(ev:view)-[:event]->(p2:product) 
-WHERE p2.name <> 'pair of red heels' 
-RETURN p2.name as Product, count(p0) as Views
+
 ----
 
 
