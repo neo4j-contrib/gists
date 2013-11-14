@@ -35,6 +35,7 @@ CREATE (switch2:Switch { ipv4:'0.0.0.7', dns:'NT-USA01-SWC02'})
 CREATE (oceanfloorcable1:OceanfloorCable { ipv4:'10.10.10.10', dns:'OCEANFLOOR-CBL-01'})
 
 CREATE (router1)<-[:DEPENDS_ON]-(service1)-[:DEPENDS_ON]->(router2)
+CREATE (switch2)<-[:DEPENDS_ON]-(service1)-[:DEPENDS_ON]->(switch1)
 CREATE (router1)-[:DEPENDS_ON]->(fiberlink1)
 CREATE (router1)-[:LINKED]->(switch1)
 CREATE (router2)-[:DEPENDS_ON]->(fiberlink2)
