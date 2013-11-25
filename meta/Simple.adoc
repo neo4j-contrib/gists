@@ -1,5 +1,8 @@
 = A simple GraphGist
 
+:author: Anders Nawroth
+:twitter: @nawroth
+
 You create a GraphGist by creating a https://gist.github.com/[GitHub Gist] in http://asciidoctor.org/docs/asciidoc-quick-reference/[AsciiDoc] and enter the URL to it in the form on this page.
 
 Click on the Page Source button in the menu to see the source for this GraphGist!
@@ -11,8 +14,6 @@ Click on the Page Source button in the menu to see the source for this GraphGist
 becomes:
 
 //console
-
-NOTE: Put the console before any queries!
 
 == Define a http://docs.neo4j.org/chunked/snapshot/cypher-query-lang.html[Cypher] query
 
