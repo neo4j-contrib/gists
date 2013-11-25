@@ -3,7 +3,7 @@
 :neo4j-version: 2.0.0-RC1
 :author: Anders Nawroth
 :twitter: @nawroth
-
+:tags: domain:example
 
 Neo4j GraphGists are a way to share documents including Cypher queries.
 The queries can be executed in an online console.
