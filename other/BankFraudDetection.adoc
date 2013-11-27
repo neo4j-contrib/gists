@@ -32,7 +32,7 @@ CREATE (accountHolder3:AccountHolder { FirstName: "Matt", LastName: "Smith", Uni
 CREATE (address1:Address { Street: "127 W Ave", City: "San Francisco", State: "California", ZipCode: "94061" })
 CREATE (accountHolder1)-[:HAS_ADDRESS]->(address1), (accountHolder2)-[:HAS_ADDRESS]->(address1), (accountHolder3)-[:HAS_ADDRESS]->(address1)
 CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "555-555-5555" })
-CREATE (accountHolder1)-[HAS_PHONENUMBER]->(phoneNumber1), (accountHolder2)-[HAS_PHONENUMBER]->(phoneNumber1)
+CREATE (accountHolder1)-[:HAS_PHONENUMBER]->(phoneNumber1), (accountHolder2)-[:HAS_PHONENUMBER]->(phoneNumber1)
 CREATE (ssn1:SSN { SSN: "241-23-1234" })
 CREATE (accountHolder2)-[HAS_SSN]->(ssn1), (accountHolder3)-[HAS_SSN]->(ssn1)
 CREATE (ssn2:SSN { SSN: "241-23-4567" })<-[:HAS_SSN]-(accountHolder1)
@@ -43,6 +43,7 @@ CREATE (bankAccount2:BankAccount { AccountNumber: "3456789012345678", Balance: 4
 CREATE (unsecuredLoan2:UnsecuredLoan { AccountNumber: "4567890123456789-0", Balance: 9045.53, APR: .0541, LoanAmount: 12000.00 })<-[:HAS_UNSECUREDLOAN]-(accountHolder2)
 CREATE (bankAccount3:BankAccount { AccountNumber: "4567890123456789", Balance: 12345.45 })<-[:HAS_BANKACCOUNT]-(accountHolder3)
 CREATE (unsecuredLoan3:UnsecuredLoan { AccountNumber: "5678901234567890-0", Balance: 16341.95, APR: .0341, LoanAmount: 22000.00 })<-[:HAS_UNSECUREDLOAN]-(accountHolder3)
+CREATE (phoneNumber2:PhoneNumber { PhoneNumber: "555-555-1234" })<-[:HAS_PHONENUMBER]-(accountHolder3)
 RETURN *
 ----
 
