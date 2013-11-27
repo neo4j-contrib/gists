@@ -15,6 +15,7 @@ This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
 * <<sample_data_set, Sample Data Set>>
 * <<entity_link_analysis, Entity Link Analysis>>
 ** <<find_account_holders_who_share_more_than_one_piece_of_legitimate_contact_information, Find account holders who share more than...>>
+** <<determine_the_financial_risk_of_a_possible_fraud_ring , Determine the financial risk of a possible fraud ring>>
 
 == Introduction to Problem
 
@@ -87,10 +88,10 @@ CREATE (accountHolder3:AccountHolder {
 
 // Create Address
 CREATE (address1:Address { 
-			Street: "127 W Ave", 
+			Street: "123 NW 1st Street", 
 			City: "San Francisco", 
 			State: "California", 
-			ZipCode: "94061" })
+			ZipCode: "94101" })
 
 // Connect 3 account holders to 1 address
 CREATE (accountHolder1)-[:HAS_ADDRESS]->(address1), 
@@ -174,13 +175,56 @@ Performing entity link analysis on the above data model is demonstrated below.
 
 [source,cypher]
 ----
-MATCH (accountHolder:AccountHolder)-[]->(contactInformation) 
-WITH contactInformation, count(accountHolder) AS RingSize 
-MATCH (contactInformation)<-[]-(accountHolder) 
-WITH collect(accountHolder.UniqueId) AS AccountHolders, contactInformation, RingSize 
+MATCH 	(accountHolder:AccountHolder)-[]->(contactInformation) 
+
+WITH 	contactInformation, 
+		count(accountHolder) AS RingSize 
+
+MATCH 	(contactInformation)<-[]-(accountHolder) 
+
+WITH 	collect(accountHolder.UniqueId) AS AccountHolders, 
+		contactInformation, RingSize
+
 WHERE RingSize > 1 
-RETURN AccountHolders AS FraudRing, labels(contactInformation) AS ContactType, RingSize 
+
+RETURN 	AccountHolders AS FraudRing, 
+		labels(contactInformation) AS ContactType, 
+		RingSize 
+		
 ORDER BY RingSize DESC
+----
+
+//output
+//table
+
+==== Determine the financial risk of a possible fraud ring
+
+[source,cypher]
+----
+MATCH 	(accountHolder:AccountHolder)-[]->(contactInformation) 
+
+WITH 	contactInformation, 
+		count(accountHolder) AS RingSize 
+
+MATCH 	(contactInformation)<-[]-(accountHolder), 
+		(accountHolder)-[r:HAS_CREDITCARD|HAS_UNSECUREDLOAN]->(unsecuredAccount)
+
+WITH 	collect(DISTINCT accountHolder.UniqueId) AS AccountHolders, 
+		contactInformation, RingSize,
+		SUM(CASE type(r)
+			WHEN 'HAS_CREDITCARD' THEN unsecuredAccount.Limit
+			WHEN 'HAS_UNSECUREDLOAN' THEN unsecuredAccount.Balance
+			ELSE 0
+		END) as FinancialRisk
+
+WHERE RingSize > 1
+
+RETURN 	AccountHolders AS FraudRing, 
+		labels(contactInformation) AS ContactType, 
+		RingSize, 
+		round(FinancialRisk) as FinancialRisk
+
+ORDER BY FinancialRisk DESC
 ----
 
 //output
