@@ -1,0 +1,21 @@
+= Bank Fraud Detection
+:neo4j-version: 2.0.0-RC1
+:author: Kenny Bastani
+:twitter: @kennybastani
+:tags: domain:finance, use-case:fraud-detection
+
+This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
+
+== Introduction to Problem
+
+Banks and Insurance companies lose billions of dollars every year to fraud. Traditional methods of fraud detection play an important role in minimizing these losses. However increasingly sophisticated fraudsters have developed a variety of ways to elude discovery, both by working together, and by leveraging various other means of constructing false identities. 
+
+== Explanation of Scenario
+
+While no fraud prevention measures can ever be perfect, significant opportunity for improvement lies in looking beyond the individual data points, to the connections that link them. Oftentimes these connections go unnoticed until it is too late— something that is unfortunate, as these connections oftentimes hold the best clues.
+
+== Explanation of Solution
+
+Graph databases offer new methods of uncovering fraud rings and other sophisticated scams with a high-level of accuracy, and are capable of stopping advanced fraud scenarios in real-time.
+
+== Bank Fraud Data Model
