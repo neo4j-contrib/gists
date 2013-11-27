@@ -19,3 +19,5 @@ While no fraud prevention measures can ever be perfect, significant opportunity 
 Graph databases offer new methods of uncovering fraud rings and other sophisticated scams with a high-level of accuracy, and are capable of stopping advanced fraud scenarios in real-time.
 
 == Bank Fraud Data Model
+
+image::https://raw.github.com/neo4j-contrib/gists/master/other/images/BankFraud-1.png[Bank Fraud]
