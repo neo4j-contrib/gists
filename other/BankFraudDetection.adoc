@@ -34,7 +34,7 @@ CREATE (accountHolder1)-[:HAS_ADDRESS]->(address1), (accountHolder2)-[:HAS_ADDRE
 CREATE (phoneNumber1:PhoneNumber { PhoneNumber: "555-555-5555" })
 CREATE (accountHolder1)-[:HAS_PHONENUMBER]->(phoneNumber1), (accountHolder2)-[:HAS_PHONENUMBER]->(phoneNumber1)
 CREATE (ssn1:SSN { SSN: "241-23-1234" })
-CREATE (accountHolder2)-[HAS_SSN]->(ssn1), (accountHolder3)-[HAS_SSN]->(ssn1)
+CREATE (accountHolder2)-[:HAS_SSN]->(ssn1), (accountHolder3)-[:HAS_SSN]->(ssn1)
 CREATE (ssn2:SSN { SSN: "241-23-4567" })<-[:HAS_SSN]-(accountHolder1)
 CREATE (creditCard1:CreditCard { AccountNumber: "1234567890123456", Limit: 5000, Balance: 1442.23, ExpirationDate: "01-20", SecurityCode: "123" })<-[:HAS_CREDITCARD]-(accountHolder1)
 CREATE (bankAccount1:BankAccount { AccountNumber: "2345678901234567", Balance: 7054.43 })<-[:HAS_BANKACCOUNT]-(accountHolder1)
