@@ -103,7 +103,7 @@ CREATE (er_s9_e17:Episode {name: "Peter's Progress"})
 CREATE (tedMosby:Character {name: "The Advocate "})
 
 CREATE UNIQUE (er)-[:HAS_SEASON]->(er_s9)
-CREATE UNIQUE (er_s7)-[:HAS_EPISODE]->(er_s9_e17)
+CREATE UNIQUE (er_s9)-[:HAS_EPISODE]->(er_s9_e17)
 
 WITH er_s9_e17
 
