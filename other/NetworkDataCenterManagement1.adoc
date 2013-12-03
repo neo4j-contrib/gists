@@ -225,16 +225,6 @@ RETURN labels(n)[0] as type, count(*) as count, collect(n.host) as names
 
 === Query 2
 
-//output
-[source,cypher]
-----
-MATCH node0-[r]->node1
-RETURN *
-----
-
-=== Query 3
-
-//output
 [source,cypher]
 ----
 MATCH node0-[r]->node1
@@ -259,31 +249,7 @@ RETURN *
 
 === Query 5
 
-//output
-[source,cypher]
-----
-MATCH node0-[r]->node1
-RETURN *
-----
 
-
-=== Query 6
-
-//output
-[source,cypher]
-----
-MATCH node0-[r]->node1
-RETURN *
-----
-
-=== Query 7
-
-//output
-[source,cypher]
-----
-MATCH node0-[r]->node1
-RETURN *
-----
 
 === Concluding Remarks
 
