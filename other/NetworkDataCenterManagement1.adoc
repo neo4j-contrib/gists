@@ -161,6 +161,9 @@ CREATE 	(publicwebsite1)-[:DEPENDS_ON]->(databasevm1),
 // Connect Database VM 1 to Hardware 1
 CREATE 	(databasevm1)-[:DEPENDS_ON]->(hardware1)
 
+// Connect Hardware 1 to SAN 1
+CREATE 	(hardware1)-[:DEPENDS_ON]->(san1)
+
 // Connect Public Websites 1-3 to Webserver VM 1
 CREATE 	(webservervm1)<-[:DEPENDS_ON]-(publicwebsite1),
 		(webservervm1)<-[:DEPENDS_ON]-(publicwebsite2),
@@ -184,6 +187,8 @@ CREATE 	(webservervm2)-[:DEPENDS_ON]->(hardware2)
 CREATE 	(webservervm2)<-[:DEPENDS_ON]-(publicwebsite4),
 		(webservervm2)<-[:DEPENDS_ON]-(publicwebsite5)
 
+// Connect Database VM 2 to Hardware 2
+CREATE 	(hardware2)<-[:DEPENDS_ON]-(databasevm2)
 
 // Connect Public Websites 4-5 to Database VM 2
 CREATE 	(publicwebsite4)-[:DEPENDS_ON]->(databasevm2),
@@ -216,8 +221,13 @@ Shows a quick overview over the datacenter content grouped by server type.
 
 [source,cypher]
 ----
-MATCH (n) 
-RETURN labels(n)[1] as type, count(*) as count, collect(n.host) as names
+MATCH 	(n) 
+RETURN 	CASE labels(n)[1]
+			WHEN 'Resource' THEN labels(n)[0]
+			ELSE labels(n)[1]
+		END as type, 
+		count(*) as count, 
+		collect(n.host) as names
 ----
 
 //table
@@ -225,10 +235,10 @@ RETURN labels(n)[1] as type, count(*) as count, collect(n.host) as names
 === Find direct dependencies of all public websites
 [source,cypher]
 ----
-MATCH 	(website:PublicWebsite)-[:DEPENDS_ON]->(downstream)
-RETURN 	labels(website)[1] + ": " + website.host as Host, 
-		collect(labels(downstream)[1] + ": " + downstream.host) as Dependencies
-ORDER BY Host
+MATCH 		(website:PublicWebsite)-[:DEPENDS_ON]->(downstream)
+RETURN 		labels(website)[1] + ": " + website.host as Host, 
+			collect(labels(downstream)[1] + ": " + downstream.host) as Dependencies
+ORDER BY 	Host
 ----
 
 //table
@@ -236,10 +246,10 @@ ORDER BY Host
 === Find direct dependencies of all internal websites
 [source,cypher]
 ----
-MATCH 	(website:InternalWebsite)-[:DEPENDS_ON]->(downstream)
-RETURN 	labels(website)[1] + ": " + website.host as Host, 
-		collect(labels(downstream)[1] + ": " + downstream.host) as Dependencies
-ORDER BY Host
+MATCH 		(website:InternalWebsite)-[:DEPENDS_ON]->(downstream)
+RETURN 		labels(website)[1] + ": " + website.host as Host, 
+			collect(labels(downstream)[1] + ": " + downstream.host) as Dependencies
+ORDER BY 	Host
 ----
 
 //table
@@ -252,6 +262,50 @@ RETURN 		labels(n)[1] + ": " + n.host as Host,
 			count(DISTINCT dependent) AS Dependents
 ORDER BY 	Dependents DESC
 LIMIT 		1
+----
+
+//table
+
+=== Find dependency chain for business critical components:  CRM
+[source,cypher]
+----
+MATCH 		(dependency:Resource)<-[:DEPENDS_ON*]-(dependent)
+WITH 		dependency, count(DISTINCT dependent) AS Dependents
+ORDER BY 	Dependents DESC
+LIMIT		1
+WITH		dependency
+MATCH 		p=(resource:CRM)-[:DEPENDS_ON*]->(dependency)
+RETURN 		extract(x in nodes(p) | labels(x)[1] + ": " + x.host) as DependencyChain
+----
+
+//table
+
+
+=== Find dependency chain for business critical components:  ERP
+[source,cypher]
+----
+MATCH 		(dependency:Resource)<-[:DEPENDS_ON*]-(dependent)
+WITH 		dependency, count(DISTINCT dependent) AS Dependents
+ORDER BY 	Dependents DESC
+LIMIT		1
+WITH		dependency
+MATCH 		p=(resource:ERP)-[:DEPENDS_ON*]->(dependency)
+RETURN 		extract(x in nodes(p) | labels(x)[1] + ": " + x.host) as DependencyChain
+----
+
+//table
+
+
+=== Find dependency chain for business critical components: Data Warehouse
+[source,cypher]
+----
+MATCH 		(dependency:Resource)<-[:DEPENDS_ON*]-(dependent)
+WITH 		dependency, count(DISTINCT dependent) AS Dependents
+ORDER BY 	Dependents DESC
+LIMIT		1
+WITH		dependency
+MATCH 		p=(resource:DataWarehouse)-[:DEPENDS_ON*]->(dependency)
+RETURN 		extract(x in nodes(p) | labels(x)[1] + ": " + x.host) as DependencyChain
 ----
 
 //table
