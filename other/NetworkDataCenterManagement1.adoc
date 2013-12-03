@@ -25,154 +25,160 @@ image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-
 [source,cypher]
 ----
 // Create CRM
-CREATE (crm1:CRM { 
+CREATE (crm1:Application { 
 			ip:'10.10.32.1', 
-			host:'crm-host'
+			host:'CRM-APPLICATION',
+			type: 'APPLICATION',
+			system: 'CRM'
 		}) 
 
 // Create ERP
-CREATE (erp1:ERP { 
+CREATE (erp1:Application { 
 			ip:'10.10.33.1', 
-			host:'erp-host'
+			host:'ERP-APPLICATION',
+			type: 'APPLICATION',
+			system: 'ERP'
 		}) 
 
 // Create Data Warehouse
-CREATE (datawarehouse1:DataWarehouse { 
+CREATE (datawarehouse1:Application { 
 			ip:'10.10.34.1', 
-			host:'datawarehouse-host'
+			host:'DATA-WAREHOUSE',
+			type: 'DATABASE',
+			system: 'DW'
 		}) 
 
 // Create Public Website 1
-CREATE (publicwebsite1:PublicWebsite { 
+CREATE (Internet1:Internet { 
 			ip:'10.10.35.1', 
 			host:'global.acme.com'
 		}) 
 
 // Create Public Website 2
-CREATE (publicwebsite2:PublicWebsite { 
+CREATE (Internet2:Internet { 
 			ip:'10.10.35.2', 
 			host:'support.acme.com'
 		}) 
 
 // Create Public Website 3
-CREATE (publicwebsite3:PublicWebsite { 
+CREATE (Internet3:Internet { 
 			ip:'10.10.35.3', 
 			host:'shop.acme.com'
 		}) 
 
 // Create Public Website 4
-CREATE (publicwebsite4:PublicWebsite { 
+CREATE (Internet4:Internet { 
 			ip:'10.10.35.4', 
 			host:'training.acme.com'
 		}) 
 
 // Create Public Website 5
-CREATE (publicwebsite5:PublicWebsite { 
+CREATE (Internet5:Internet { 
 			ip:'10.10.35.1', 
 			host:'partners.acme.com'
 		}) 
 
 // Create Internal Website 1
-CREATE (internalwebsite1:InternalWebsite { 
+CREATE (Intranet1:Intranet { 
 			ip:'10.10.35.2', 
 			host:'events.acme.net'
 		}) 
 
 // Create Internal Website 2
-CREATE (internalwebsite2:InternalWebsite { 
+CREATE (Intranet2:Intranet { 
 			ip:'10.10.35.3', 
 			host:'intranet.acme.net'
 		}) 
 
 // Create Internal Website 3
-CREATE (internalwebsite3:InternalWebsite { 
+CREATE (Intranet3:Intranet { 
 			ip:'10.10.35.4', 
 			host:'humanresources.acme.net'
 		}) 
 
 // Create Webserver VM 1
-CREATE (webservervm1:WebserverVM { 
+CREATE (webservervm1:VirtualMachine { 
 			ip:'10.10.35.5', 
-			host:'webserver1-vm-host'
+			host:'WEBSERVER-1'
 		}) 
 
 // Create Webserver VM 2
-CREATE (webservervm2:WebserverVM { 
+CREATE (webservervm2:VirtualMachine { 
 			ip:'10.10.35.6', 
-			host:'webserver2-vm-host'
+			host:'WEBSERVER-2'
 		}) 
 
 // Create Database VM 1
-CREATE (databasevm1:CustomerDatabase { 
+CREATE (customerdatabase1:VirtualMachine { 
 			ip:'10.10.35.7', 
-			host:'customerdatabase1-host'
+			host:'CUSTOMER-DB-1'
 		}) 
 
 // Create Database VM 2
-CREATE (databasevm2:CustomerDatabase { 
+CREATE (customerdatabase2:VirtualMachine { 
 			ip:'10.10.35.8', 
-			host:'customerdatabase2-host'
+			host:'CUSTOMER-DB-2'
 		}) 
 
 // Create Database VM 3
-CREATE (databasevm3:DatabaseVM { 
+CREATE (databasevm3:VirtualMachine { 
 			ip:'10.10.35.9', 
-			host:'erpdatabase-host'
+			host:'ERP-DB'
 		}) 
 
 // Create Database VM 4
-CREATE (databasevm4:DWDatabase { 
+CREATE (dwdatabase:VirtualMachine { 
 			ip:'10.10.35.10', 
-			host:'dwdatabase-host'
+			host:'DW-DATABASE'
 		}) 
 
 // Create Hardware 1
 CREATE (hardware1:Hardware { 
 			ip:'10.10.35.11', 
-			host:'hardware1-host'
+			host:'HARDWARE-SERVER-1'
 		}) 
 
 // Create Hardware 2
 CREATE (hardware2:Hardware { 
 			ip:'10.10.35.12', 
-			host:'hardware2-host'
+			host:'HARDWARE-SERVER-2'
 		}) 
 
 // Create Hardware 3
 CREATE (hardware3:Hardware { 
 			ip:'10.10.35.13', 
-			host:'hardware3-host'
+			host:'HARDWARE-SERVER-3'
 		}) 
 
 // Create SAN 1
-CREATE (san1:SAN { 
+CREATE (san1:Hardware { 
 			ip:'10.10.35.14', 
-			host:'san-host'
+			host:'SAN'
 		}) 
 
 // Connect CRM to Database VM 1
-CREATE (crm1)-[:DEPENDS_ON]->(databasevm1)
+CREATE (crm1)-[:DEPENDS_ON]->(customerdatabase1)
 
 // Connect Public Websites 1-3 to Database VM 1
-CREATE 	(publicwebsite1)-[:DEPENDS_ON]->(databasevm1),
-	   	(publicwebsite2)-[:DEPENDS_ON]->(databasevm1),
-	   	(publicwebsite3)-[:DEPENDS_ON]->(databasevm1)
+CREATE 	(Internet1)-[:DEPENDS_ON]->(customerdatabase1),
+	   	(Internet2)-[:DEPENDS_ON]->(customerdatabase1),
+	   	(Internet3)-[:DEPENDS_ON]->(customerdatabase1)
 
 // Connect Database VM 1 to Hardware 1
-CREATE 	(databasevm1)-[:DEPENDS_ON]->(hardware1)
+CREATE 	(customerdatabase1)-[:DEPENDS_ON]->(hardware1)
 
 // Connect Hardware 1 to SAN 1
 CREATE 	(hardware1)-[:DEPENDS_ON]->(san1)
 
 // Connect Public Websites 1-3 to Webserver VM 1
-CREATE 	(webservervm1)<-[:DEPENDS_ON]-(publicwebsite1),
-		(webservervm1)<-[:DEPENDS_ON]-(publicwebsite2),
-		(webservervm1)<-[:DEPENDS_ON]-(publicwebsite3)
+CREATE 	(webservervm1)<-[:DEPENDS_ON]-(Internet1),
+		(webservervm1)<-[:DEPENDS_ON]-(Internet2),
+		(webservervm1)<-[:DEPENDS_ON]-(Internet3)
 
 // Connect Internal Websites 1-3 to Webserver VM 1
-CREATE 	(webservervm1)<-[:DEPENDS_ON]-(internalwebsite1),
-		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite2),
-		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite3)
+CREATE 	(webservervm1)<-[:DEPENDS_ON]-(Intranet1),
+		(webservervm1)<-[:DEPENDS_ON]-(Intranet2),
+		(webservervm1)<-[:DEPENDS_ON]-(Intranet3)
 
 // Connect Webserver VM 1 to Hardware 2
 CREATE 	(webservervm1)-[:DEPENDS_ON]->(hardware2)
@@ -184,15 +190,15 @@ CREATE 	(hardware2)-[:DEPENDS_ON]->(san1)
 CREATE 	(webservervm2)-[:DEPENDS_ON]->(hardware2)
 
 // Connect Public Websites 4-6 to Webserver VM 2
-CREATE 	(webservervm2)<-[:DEPENDS_ON]-(publicwebsite4),
-		(webservervm2)<-[:DEPENDS_ON]-(publicwebsite5)
+CREATE 	(webservervm2)<-[:DEPENDS_ON]-(Internet4),
+		(webservervm2)<-[:DEPENDS_ON]-(Internet5)
 
 // Connect Database VM 2 to Hardware 2
-CREATE 	(hardware2)<-[:DEPENDS_ON]-(databasevm2)
+CREATE 	(hardware2)<-[:DEPENDS_ON]-(customerdatabase2)
 
 // Connect Public Websites 4-5 to Database VM 2
-CREATE 	(publicwebsite4)-[:DEPENDS_ON]->(databasevm2),
-	   	(publicwebsite5)-[:DEPENDS_ON]->(databasevm2)
+CREATE 	(Internet4)-[:DEPENDS_ON]->(customerdatabase2),
+	   	(Internet5)-[:DEPENDS_ON]->(customerdatabase2)
 
 // Connect Hardware 3 to SAN 1
 CREATE 	(hardware3)-[:DEPENDS_ON]->(san1)
@@ -204,10 +210,10 @@ CREATE 	(hardware3)<-[:DEPENDS_ON]-(databasevm3)
 CREATE 	(erp1)-[:DEPENDS_ON]->(databasevm3)
 
 // Connect Database VM 4 to Hardware 3
-CREATE 	(hardware3)<-[:DEPENDS_ON]-(databasevm4)
+CREATE 	(hardware3)<-[:DEPENDS_ON]-(dwdatabase)
 
 // Connect Data Warehouse 1 to Database VM 4
-CREATE 	(datawarehouse1)-[:DEPENDS_ON]->(databasevm4)
+CREATE 	(datawarehouse1)-[:DEPENDS_ON]->(dwdatabase)
 
 RETURN *
 
@@ -232,9 +238,9 @@ RETURN 	labels(n)[0] as type,
 === Find direct dependencies of all public websites
 [source,cypher]
 ----
-MATCH 		(website:PublicWebsite)-[:DEPENDS_ON]->(downstream)
-RETURN 		labels(website)[0] + ": " + website.host as Host, 
-			collect(labels(downstream)[0] + ": " + downstream.host) as Dependencies
+MATCH 		(website:Internet)-[:DEPENDS_ON]->(downstream)
+RETURN 		website.host as Host, 
+			collect(downstream.host) as Dependencies
 ORDER BY 	Host
 ----
 
@@ -243,9 +249,9 @@ ORDER BY 	Host
 === Find direct dependencies of all internal websites
 [source,cypher]
 ----
-MATCH 		(website:InternalWebsite)-[:DEPENDS_ON]->(downstream)
-RETURN 		labels(website)[0] + ": " + website.host as Host, 
-			collect(labels(downstream)[0] + ": " + downstream.host) as Dependencies
+MATCH 		(website:Intranet)-[:DEPENDS_ON]->(downstream)
+RETURN 		website.host as Host, 
+			collect(downstream.host) as Dependencies
 ORDER BY 	Host
 ----
 
@@ -255,7 +261,7 @@ ORDER BY 	Host
 [source,cypher]
 ----
 MATCH 		(n)<-[:DEPENDS_ON*]-(dependent)
-RETURN 		labels(n)[0] + ": " + n.host as Host, 
+RETURN 		n.host as Host, 
 			count(DISTINCT dependent) AS Dependents
 ORDER BY 	Dependents DESC
 LIMIT 		1
@@ -271,8 +277,9 @@ WITH 		dependency, count(DISTINCT dependent) AS Dependents
 ORDER BY 	Dependents DESC
 LIMIT		1
 WITH		dependency
-MATCH 		p=(resource:CRM)-[:DEPENDS_ON*]->(dependency)
-RETURN 		extract(x in nodes(p) | labels(x)[0] + ": " + x.host) as DependencyChain
+MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
+WHERE		resource.system = "CRM"
+RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
 ----
 
 //table
@@ -286,8 +293,9 @@ WITH 		dependency, count(DISTINCT dependent) AS Dependents
 ORDER BY 	Dependents DESC
 LIMIT		1
 WITH		dependency
-MATCH 		p=(resource:ERP)-[:DEPENDS_ON*]->(dependency)
-RETURN 		extract(x in nodes(p) | labels(x)[0] + ": " + x.host) as DependencyChain
+MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
+WHERE		resource.system = "ERP"
+RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
 ----
 
 //table
@@ -301,8 +309,9 @@ WITH 		dependency, count(DISTINCT dependent) AS Dependents
 ORDER BY 	Dependents DESC
 LIMIT		1
 WITH		dependency
-MATCH 		p=(resource:DataWarehouse)-[:DEPENDS_ON*]->(dependency)
-RETURN 		extract(x in nodes(p) | labels(x)[0] + ": " + x.host) as DependencyChain
+MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
+WHERE		resource.system = "DW"
+RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
 ----
 
 //table
