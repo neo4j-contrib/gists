@@ -223,38 +223,24 @@ RETURN labels(n)[0] as type, count(*) as count, collect(n.host) as names
 
 //table
 
-=== Query 2
-
+=== Find direct dependencies of all public websites
 [source,cypher]
 ----
-MATCH node0-[r]->node1
-RETURN *
+MATCH 	(website:PublicWebsite)-[:DEPENDS_ON]->(downstream)
+RETURN 	labels(website)[0] + ": " + website.host as Host, 
+		collect(labels(downstream)[0] + ": " + downstream.host) as Dependencies
+ORDER BY Host
 ----
 
+//table
 
-== Expanded Summary of Queries 
-
-
-== Image of Data Models 2
-
-
-=== Query 4
-
-//output
+=== Find direct dependencies of all internal websites
 [source,cypher]
 ----
-MATCH node0-[r]->node1
-RETURN *
+MATCH 	(website:InternalWebsite)-[:DEPENDS_ON]->(downstream)
+RETURN 	labels(website)[0] + ": " + website.host as Host, 
+		collect(labels(downstream)[0] + ": " + downstream.host) as Dependencies
+ORDER BY Host
 ----
 
-=== Query 5
-
-
-
-=== Concluding Remarks
-
-It's your turn! Fork this GraphGist on GitHub and modify the code to create your own [subject] GraphGists.
-
-== Contact Author
-
-Also, follow me on Twitter for more Neo4j GraphGists -> http://www.twitter.com/kennybastani[@kennybastani]
+//table
