@@ -103,27 +103,27 @@ CREATE (webservervm2:WebserverVM {
 		}) 
 
 // Create Database VM 1
-CREATE (databasevm1:DatabaseVM { 
+CREATE (databasevm1:CustomerDatabase { 
 			ip:'10.10.35.7', 
-			host:'database1-vm-host'
+			host:'customerdatabase1-host'
 		}) 
 
 // Create Database VM 2
-CREATE (databasevm2:DatabaseVM { 
+CREATE (databasevm2:CustomerDatabase { 
 			ip:'10.10.35.8', 
-			host:'database2-vm-host'
+			host:'customerdatabase2-host'
 		}) 
 
 // Create Database VM 3
 CREATE (databasevm3:DatabaseVM { 
 			ip:'10.10.35.9', 
-			host:'database3-vm-host'
+			host:'erpdatabase-host'
 		}) 
 
 // Create Database VM 4
-CREATE (databasevm4:DatabaseVM { 
+CREATE (databasevm4:DWDatabase { 
 			ip:'10.10.35.10', 
-			host:'database4-vm-host'
+			host:'dwdatabase-host'
 		}) 
 
 // Create Hardware 1
