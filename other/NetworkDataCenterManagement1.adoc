@@ -92,13 +92,13 @@ CREATE (internalwebsite3:InternalWebsite {
 		}) 
 
 // Create Webserver VM 1
-CREATE (webservervm1:WebserverVM1 { 
+CREATE (webservervm1:WebserverVM { 
 			ip:'10.10.32.1', 
 			host:'AM-WSVM-01'
 		}) 
 
 // Create Webserver VM 2
-CREATE (webservervm2:WebserverVM2 { 
+CREATE (webservervm2:WebserverVM { 
 			ip:'10.10.32.1', 
 			host:'AM-WSVM-02'
 		}) 
