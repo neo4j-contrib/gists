@@ -126,20 +126,20 @@ CREATE (databasevm4:DatabaseVM:Resource {
 			host:'AM-DBVM-04'
 		}) 
 
-// Create Server 1
-CREATE (server1:Server:Resource { 
+// Create Hardware 1
+CREATE (hardware1:Hardware:Resource { 
 			ip:'10.10.32.1', 
 			host:'AM-SRV-01'
 		}) 
 
-// Create Server 2
-CREATE (server2:Server:Resource { 
+// Create Hardware 2
+CREATE (hardware2:Hardware:Resource { 
 			ip:'10.10.32.1', 
 			host:'AM-SRV-02'
 		}) 
 
-// Create Server 3
-CREATE (server3:Server:Resource { 
+// Create Hardware 3
+CREATE (hardware3:Hardware:Resource { 
 			ip:'10.10.32.1', 
 			host:'AM-SRV-03'
 		}) 
@@ -158,8 +158,8 @@ CREATE 	(publicwebsite1)-[:DEPENDS_ON]->(databasevm1),
 	   	(publicwebsite2)-[:DEPENDS_ON]->(databasevm1),
 	   	(publicwebsite3)-[:DEPENDS_ON]->(databasevm1)
 
-// Connect Database VM 1 to Server 1
-CREATE 	(databasevm1)-[:DEPENDS_ON]->(server1)
+// Connect Database VM 1 to Hardware 1
+CREATE 	(databasevm1)-[:DEPENDS_ON]->(hardware1)
 
 // Connect Public Websites 1-3 to Webserver VM 1
 CREATE 	(webservervm1)<-[:DEPENDS_ON]-(publicwebsite1),
@@ -171,14 +171,14 @@ CREATE 	(webservervm1)<-[:DEPENDS_ON]-(internalwebsite1),
 		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite2),
 		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite3)
 
-// Connect Webserver VM 1 to Server 2
-CREATE 	(webservervm1)-[:DEPENDS_ON]->(server2)
+// Connect Webserver VM 1 to Hardware 2
+CREATE 	(webservervm1)-[:DEPENDS_ON]->(hardware2)
 
-// Connect Server 2 to SAN 1
-CREATE 	(server2)-[:DEPENDS_ON]->(san1)
+// Connect Hardware 2 to SAN 1
+CREATE 	(hardware2)-[:DEPENDS_ON]->(san1)
 
-// Connect Webserver VM 2 to Server 2
-CREATE 	(webservervm2)-[:DEPENDS_ON]->(server2)
+// Connect Webserver VM 2 to Hardware 2
+CREATE 	(webservervm2)-[:DEPENDS_ON]->(hardware2)
 
 // Connect Public Websites 4-6 to Webserver VM 2
 CREATE 	(webservervm2)<-[:DEPENDS_ON]-(publicwebsite4),
@@ -189,17 +189,17 @@ CREATE 	(webservervm2)<-[:DEPENDS_ON]-(publicwebsite4),
 CREATE 	(publicwebsite4)-[:DEPENDS_ON]->(databasevm2),
 	   	(publicwebsite5)-[:DEPENDS_ON]->(databasevm2)
 
-// Connect Server 3 to SAN 1
-CREATE 	(server3)-[:DEPENDS_ON]->(san1)
+// Connect Hardware 3 to SAN 1
+CREATE 	(hardware3)-[:DEPENDS_ON]->(san1)
 
-// Connect Database VM 3 to Server 3
-CREATE 	(server3)<-[:DEPENDS_ON]-(databasevm3)
+// Connect Database VM 3 to Hardware 3
+CREATE 	(hardware3)<-[:DEPENDS_ON]-(databasevm3)
 
 // Connect ERP 1 to Database VM 3
 CREATE 	(erp1)-[:DEPENDS_ON]->(databasevm3)
 
-// Connect Database VM 4 to Server 3
-CREATE 	(server3)<-[:DEPENDS_ON]-(databasevm4)
+// Connect Database VM 4 to Hardware 3
+CREATE 	(hardware3)<-[:DEPENDS_ON]-(databasevm4)
 
 // Connect Data Warehouse 1 to Database VM 4
 CREATE 	(datawarehouse1)-[:DEPENDS_ON]->(databasevm4)
