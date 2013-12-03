@@ -21,6 +21,7 @@ image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-
 == Cypher Query Setup
 
 //setup
+//hide
 [source,cypher]
 ----
 // Create CRM
@@ -210,13 +211,17 @@ RETURN *
 
 //graph
 
-=== Query 1
+=== Overview by Type
+
+Shows a quick overview over the datacenter content grouped by server type.
 
 [source,cypher]
 ----
-MATCH node0-[r]->node1
-RETURN *
+MATCH (n) 
+RETURN label(n)[0] as type, count(*) as count, collect(n.host) as names
 ----
+
+//table
 
 === Query 2
 
