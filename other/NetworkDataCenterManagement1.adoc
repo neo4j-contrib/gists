@@ -218,7 +218,7 @@ Shows a quick overview over the datacenter content grouped by server type.
 [source,cypher]
 ----
 MATCH (n) 
-RETURN label(n)[0] as type, count(*) as count, collect(n.host) as names
+RETURN labels(n)[0] as type, count(*) as count, collect(n.host) as names
 ----
 
 //table
