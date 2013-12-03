@@ -14,37 +14,195 @@ Explain the scenario you are about to cover.
 
 Explain the Neo4j solution to the scenario as a brief summary.
 
-== Network Inventory Data Model
+== Network Dependency Graph
 
-image::https://raw.github.com/neo4j-contrib/gists/master/other/images/network-inventory-cost-accounting-graph-1.PNG[]
+image::http://localhost:2223/images/datacenter-management-1.png[Network Dependency Graph]
 
 == Cypher Query Setup
 
-//hide
 //setup
 [source,cypher]
 ----
-CREATE (service1:Service { ipv4:'0.0.0.0', dns:'NT-USA01-SVC01'}) 
-CREATE (router1:Router { ipv4:'0.0.0.1', dns:'NT-USA01-RTE01'}) 
-CREATE (router2:Router { ipv4:'0.0.0.2', dns:'NT-USA01-RTE02'}) 
-CREATE (fiberlink1:FiberLink { ipv4:'0.0.0.3', dns:'NT-USA01-FLN01'}) 
-CREATE (fiberlink2:FiberLink { ipv4:'0.0.0.4', dns:'NT-USA01-FLN02'})
-CREATE (fiberlink3:FiberLink { ipv4:'0.0.0.5', dns:'NT-USA01-FLN03'})
-CREATE (switch1:Switch { ipv4:'0.0.0.6', dns:'NT-USA01-SWC01'}) 
-CREATE (switch2:Switch { ipv4:'0.0.0.7', dns:'NT-USA01-SWC02'})
-CREATE (oceanfloorcable1:OceanfloorCable { ipv4:'10.10.10.10', dns:'OCEANFLOOR-CBL-01'})
+// Create CRM
+CREATE (crm1:CRM { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-CRM-01'
+		}) 
 
-CREATE (router1)<-[:DEPENDS_ON]-(service1)-[:DEPENDS_ON]->(router2)
-CREATE (switch2)<-[:DEPENDS_ON]-(service1)-[:DEPENDS_ON]->(switch1)
-CREATE (router1)-[:DEPENDS_ON]->(fiberlink1)
-CREATE (router1)-[:LINKED]->(switch1)
-CREATE (router2)-[:DEPENDS_ON]->(fiberlink2)
-CREATE (router2)<-[:LINKED]-(switch2)
-CREATE (fiberlink1)<-[:DEPENDS_ON]-(switch1)
-CREATE (switch1)-[:LINKED]->(switch2)
-CREATE (switch2)-[:DEPENDS_ON]->(fiberlink2)
-CREATE (switch1)-[:DEPENDS_ON]->(fiberlink3)<-[:DEPENDS_ON]-(switch2)
-CREATE (fiberlink2)-[:DEPENDS_ON]->(oceanfloorcable1)
+// Create ERP
+CREATE (erp1:ERP { 
+			ipv4:'10.10.33.1', 
+			hostname:'AM-ERP-01'
+		}) 
+
+// Create Data Warehouse
+CREATE (datawarehouse1:DataWarehouse 
+		{ 
+			ipv4:'10.10.34.1', 
+			hostname:'AM-DW-01'
+		}) 
+
+// Create Public Website 1
+CREATE (publicwebsite1:PublicWebsite { 
+			ipv4:'10.10.35.1', 
+			hostname:'AM-PW-01'
+		}) 
+
+// Create Public Website 2
+CREATE (publicwebsite2:PublicWebsite { 
+			ipv4:'10.10.35.2', 
+			hostname:'AM-PW-02'
+		}) 
+
+// Create Public Website 3
+CREATE (publicwebsite3:PublicWebsite { 
+			ipv4:'10.10.35.3', 
+			hostname:'AM-PW-03'
+		}) 
+
+// Create Public Website 4
+CREATE (publicwebsite4:PublicWebsite { 
+			ipv4:'10.10.35.4', 
+			hostname:'AM-PW-04'
+		}) 
+
+// Create Public Website 5
+CREATE (publicwebsite5:PublicWebsite { 
+			ipv4:'10.10.35.1', 
+			hostname:'AM-PW-05'
+		}) 
+
+// Create Internal Website 1
+CREATE (internalwebsite1:InternalWebsite { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-IW-01'
+		}) 
+
+// Create Internal Website 2
+CREATE (internalwebsite2:InternalWebsite { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-IW-02'
+		}) 
+
+// Create Internal Website 3
+CREATE (internalwebsite3:InternalWebsite { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-IW-03'
+		}) 
+
+// Create Webserver VM 1
+CREATE (webservervm1:WebserverVM1 { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-WSVM-01'
+		}) 
+
+// Create Webserver VM 2
+CREATE (webservervm2:WebserverVM2 { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-WSVM-02'
+		}) 
+
+// Create Database VM 1
+CREATE (databasevm1:DatabaseVM { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-DBVM-01'
+		}) 
+
+// Create Database VM 2
+CREATE (databasevm2:DatabaseVM { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-DBVM-02'
+		}) 
+
+// Create Database VM 3
+CREATE (databasevm3:DatabaseVM { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-DBVM-03'
+		}) 
+
+// Create Database VM 4
+CREATE (databasevm4:DatabaseVM { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-DBVM-04'
+		}) 
+
+// Create Server 1
+CREATE (server1:Server { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-SRV-01'
+		}) 
+
+// Create Server 2
+CREATE (server2:Server { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-SRV-02'
+		}) 
+
+// Create Server 3
+CREATE (server3:Server { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-SRV-03'
+		}) 
+
+// Create SAN 1
+CREATE (san1:SAN { 
+			ipv4:'10.10.32.1', 
+			hostname:'AM-SAN-01'
+		}) 
+
+// Connect CRM to Database VM 1
+CREATE (crm1)-[:DEPENDS_ON]->(databasevm1)
+
+// Connect Public Websites 1-3 to Database VM 1
+CREATE 	(publicwebsite1)-[:DEPENDS_ON]->(databasevm1),
+	   	(publicwebsite2)-[:DEPENDS_ON]->(databasevm1),
+	   	(publicwebsite3)-[:DEPENDS_ON]->(databasevm1)
+
+// Connect Database VM 1 to Server 1
+CREATE 	(databasevm1)-[:DEPENDS_ON]->(server1)
+
+// Connect Public Websites 1-3 to Webserver VM 1
+CREATE 	(webservervm1)<-[:DEPENDS_ON]-(publicwebsite1),
+		(webservervm1)<-[:DEPENDS_ON]-(publicwebsite2),
+		(webservervm1)<-[:DEPENDS_ON]-(publicwebsite3)
+
+// Connect Internal Websites 1-3 to Webserver VM 1
+CREATE 	(webservervm1)<-[:DEPENDS_ON]-(internalwebsite1),
+		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite2),
+		(webservervm1)<-[:DEPENDS_ON]-(internalwebsite3)
+
+// Connect Webserver VM 1 to Server 2
+CREATE 	(webservervm1)-[:DEPENDS_ON]->(server2)
+
+// Connect Server 2 to SAN 1
+CREATE 	(server2)-[:DEPENDS_ON]->(san1)
+
+// Connect Webserver VM 2 to Server 2
+CREATE 	(webservervm2)-[:DEPENDS_ON]->(server2)
+
+// Connect Public Websites 4-6 to Webserver VM 2
+CREATE 	(webservervm2)<-[:DEPENDS_ON]-(publicwebsite4),
+		(webservervm2)<-[:DEPENDS_ON]-(publicwebsite5)
+
+
+// Connect Public Websites 4-5 to Database VM 2
+CREATE 	(publicwebsite4)-[:DEPENDS_ON]->(databasevm2),
+	   	(publicwebsite5)-[:DEPENDS_ON]->(databasevm2)
+
+// Connect Server 3 to SAN 1
+CREATE 	(server3)-[:DEPENDS_ON]->(san1)
+
+// Connect Database VM 3 to Server 3
+CREATE 	(server3)<-[:DEPENDS_ON]-(databasevm3)
+
+// Connect ERP 1 to Database VM 3
+CREATE 	(erp1)-[:DEPENDS_ON]->(databasevm3)
+
+// Connect Database VM 4 to Server 3
+CREATE 	(server3)<-[:DEPENDS_ON]-(databasevm4)
+
+// Connect Data Warehouse 1 to Database VM 4
+CREATE 	(datawarehouse1)-[:DEPENDS_ON]->(databasevm4)
 
 RETURN *
 
