@@ -25,7 +25,7 @@ image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-
 [source,cypher]
 ----
 // Create CRM
-CREATE (crm1:CRM:Resource { 
+CREATE (crm1:Resource:CRM { 
 			ip:'10.10.32.1', 
 			host:'AM-CRM-01'
 		}) 
