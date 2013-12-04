@@ -1,27 +1,10 @@
-= Network and Data Center Management
-
-This interactive Neo4j graph tutorial covers Network and Data Center Management scenarios.
-
-== Introduction to Problem
-
-Explain the problem here. Be specific.
-
-== Explanation of Scenario
-
-Explain the scenario you are about to cover.
-
-== Explanation of Solution
-
-Explain the Neo4j solution to the scenario as a brief summary.
-
 == Network Dependency Graph
 
 image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-management-1.PNG[Network Dependency Graph]
 
-== Cypher Query Setup
+=== Database Setup
 
 //setup
-//hide
 [source,cypher]
 ----
 // Create CRM
@@ -51,109 +34,145 @@ CREATE (datawarehouse1:Application {
 // Create Public Website 1
 CREATE (Internet1:Internet { 
 			ip:'10.10.35.1', 
-			host:'global.acme.com'
+			host:'global.acme.com',
+			type: "APPLICATION",
+			system: "INTERNET"
 		}) 
 
 // Create Public Website 2
 CREATE (Internet2:Internet { 
 			ip:'10.10.35.2', 
-			host:'support.acme.com'
+			host:'support.acme.com',
+			type: "APPLICATION",
+			system: "INTERNET"
 		}) 
 
 // Create Public Website 3
 CREATE (Internet3:Internet { 
 			ip:'10.10.35.3', 
-			host:'shop.acme.com'
+			host:'shop.acme.com',
+			type: "APPLICATION",
+			system: "INTERNET"
 		}) 
 
 // Create Public Website 4
 CREATE (Internet4:Internet { 
 			ip:'10.10.35.4', 
-			host:'training.acme.com'
+			host:'training.acme.com',
+			type: "APPLICATION",
+			system: "INTERNET"
 		}) 
 
 // Create Public Website 5
 CREATE (Internet5:Internet { 
 			ip:'10.10.35.1', 
-			host:'partners.acme.com'
+			host:'partners.acme.com',
+			type: "APPLICATION",
+			system: "INTERNET"
 		}) 
 
 // Create Internal Website 1
 CREATE (Intranet1:Intranet { 
 			ip:'10.10.35.2', 
-			host:'events.acme.net'
+			host:'events.acme.net',
+			type: "APPLICATION",
+			system: "INTRANET"
 		}) 
 
 // Create Internal Website 2
 CREATE (Intranet2:Intranet { 
 			ip:'10.10.35.3', 
-			host:'intranet.acme.net'
+			host:'intranet.acme.net',
+			type: "APPLICATION",
+			system: "INTRANET"
 		}) 
 
 // Create Internal Website 3
 CREATE (Intranet3:Intranet { 
 			ip:'10.10.35.4', 
-			host:'humanresources.acme.net'
+			host:'humanresources.acme.net',
+			type: "APPLICATION",
+			system: "INTRANET"
 		}) 
 
 // Create Webserver VM 1
 CREATE (webservervm1:VirtualMachine { 
 			ip:'10.10.35.5', 
-			host:'WEBSERVER-1'
+			host:'WEBSERVER-1',
+			type: "WEB SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Webserver VM 2
 CREATE (webservervm2:VirtualMachine { 
 			ip:'10.10.35.6', 
-			host:'WEBSERVER-2'
+			host:'WEBSERVER-2',
+			type: "WEB SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Database VM 1
 CREATE (customerdatabase1:VirtualMachine { 
 			ip:'10.10.35.7', 
-			host:'CUSTOMER-DB-1'
+			host:'CUSTOMER-DB-1',
+			type: "DATABASE SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Database VM 2
 CREATE (customerdatabase2:VirtualMachine { 
 			ip:'10.10.35.8', 
-			host:'CUSTOMER-DB-2'
+			host:'CUSTOMER-DB-2',
+			type: "DATABASE SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Database VM 3
 CREATE (databasevm3:VirtualMachine { 
 			ip:'10.10.35.9', 
-			host:'ERP-DB'
+			host:'ERP-DB',
+			type: "DATABASE SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Database VM 4
 CREATE (dwdatabase:VirtualMachine { 
 			ip:'10.10.35.10', 
-			host:'DW-DATABASE'
+			host:'DW-DATABASE',
+			type: "DATABASE SERVER",
+			system: "VIRTUAL MACHINE"
 		}) 
 
 // Create Hardware 1
 CREATE (hardware1:Hardware { 
 			ip:'10.10.35.11', 
-			host:'HARDWARE-SERVER-1'
+			host:'HARDWARE-SERVER-1',
+			type: "HARDWARE SERVER",
+			system: "PHYSICAL INFRASTRUCTURE"
 		}) 
 
 // Create Hardware 2
 CREATE (hardware2:Hardware { 
 			ip:'10.10.35.12', 
-			host:'HARDWARE-SERVER-2'
+			host:'HARDWARE-SERVER-2',
+			type: "HARDWARE SERVER",
+			system: "PHYSICAL INFRASTRUCTURE"
 		}) 
 
 // Create Hardware 3
 CREATE (hardware3:Hardware { 
 			ip:'10.10.35.13', 
-			host:'HARDWARE-SERVER-3'
+			host:'HARDWARE-SERVER-3',
+			type: "HARDWARE SERVER",
+			system: "PHYSICAL INFRASTRUCTURE"
 		}) 
 
 // Create SAN 1
 CREATE (san1:Hardware { 
 			ip:'10.10.35.14', 
-			host:'SAN'
+			host:'SAN',
+			type: "STORAGE AREA NETWORK",
+			system: "PHYSICAL INFRASTRUCTURE"
 		}) 
 
 // Connect CRM to Database VM 1
@@ -219,6 +238,7 @@ RETURN *
 
 ----
 
+=== Interactive Graph Visualization
 //graph
 
 === Overview by Type
@@ -238,7 +258,8 @@ RETURN 	labels(n)[0] as type,
 === Find direct dependencies of all public websites
 [source,cypher]
 ----
-MATCH 		(website:Internet)-[:DEPENDS_ON]->(downstream)
+MATCH 		(website)-[:DEPENDS_ON]->(downstream)
+WHERE		website.system = "INTERNET"
 RETURN 		website.host as Host, 
 			collect(downstream.host) as Dependencies
 ORDER BY 	Host
@@ -249,7 +270,8 @@ ORDER BY 	Host
 === Find direct dependencies of all internal websites
 [source,cypher]
 ----
-MATCH 		(website:Intranet)-[:DEPENDS_ON]->(downstream)
+MATCH 		(website)-[:DEPENDS_ON]->(downstream)
+WHERE		website.system = "INTRANET"
 RETURN 		website.host as Host, 
 			collect(downstream.host) as Dependencies
 ORDER BY 	Host
@@ -279,7 +301,8 @@ LIMIT		1
 WITH		dependency
 MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
 WHERE		resource.system = "CRM"
-RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
+RETURN		"[" + head(nodes(p)).host + "]" + 
+			reduce(s = "", n in tail(nodes(p)) | s + " -> " + "[" + n.host + "]") as Chain
 ----
 
 //table
@@ -295,7 +318,8 @@ LIMIT		1
 WITH		dependency
 MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
 WHERE		resource.system = "ERP"
-RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
+RETURN		"[" + head(nodes(p)).host + "]" + 
+			reduce(s = "", n in tail(nodes(p)) | s + " -> " + "[" + n.host + "]") as Chain
 ----
 
 //table
@@ -311,7 +335,8 @@ LIMIT		1
 WITH		dependency
 MATCH 		p=(resource)-[:DEPENDS_ON*]->(dependency)
 WHERE		resource.system = "DW"
-RETURN 		extract(x in nodes(p) | x.host) as DependencyChain
+RETURN		"[" + head(nodes(p)).host + "]" + 
+			reduce(s = "", n in tail(nodes(p)) | s + " -> " + "[" + n.host + "]") as Chain
 ----
 
 //table
