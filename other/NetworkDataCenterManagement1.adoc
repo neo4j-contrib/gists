@@ -1,4 +1,8 @@
-== Network Dependency Graph
+= Network Dependency Graph
+:neo4j-version: 2.0.0-RC1
+:author: Kenny Bastani
+:twitter: @kennybastani
+:tags: domain:networks, use-case:network-dependencies
 
 This interactive Neo4j tutorial covers a scenario in Network and Data Center Management for ACME. ACME is a fictional company with a large network infrastructure that includes a CRM application, ERP application, and a Data Warehousing solution. ACME has a series of public facing websites that they need to be up and running in order to conduct their business and support their customers.
 
