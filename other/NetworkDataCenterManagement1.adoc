@@ -1,8 +1,14 @@
 == Network Dependency Graph
 
+This interactive Neo4j tutorial covers a scenario in Network and Data Center Management for ACME. ACME is a fictional company with a large network infrastructure that includes a CRM application, ERP application, and a Data Warehousing solution. ACME has a series of public facing websites that they need to be up and running in order to conduct their business and support their customers.
+
+=== ACME's Network Dependency Graph
+
 image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-management-1.PNG[Network Dependency Graph]
 
 === Database Setup
+
+Below you will find the full Cypher script for creating ACME's Network Dependency Graph in Neo4j. This simple script is the full setup of the data set that we will later perform analysis on.
 
 //setup
 [source,cypher]
@@ -241,9 +247,9 @@ RETURN *
 === Interactive Graph Visualization
 //graph
 
-=== Overview by Type
+=== ACME's Network Inventory
 
-Shows a quick overview over the datacenter content grouped by server type.
+The query below generates a data table that gives a quick overview of ACME's network infrastructure.
 
 [source,cypher]
 ----
@@ -256,6 +262,9 @@ RETURN 	labels(n)[0] as type,
 //table
 
 === Find direct dependencies of all public websites
+
+The query below queries the data model to find all business web applications that are on the public facing internet for ACME.
+
 [source,cypher]
 ----
 MATCH 		(website)-[:DEPENDS_ON]->(downstream)
@@ -268,6 +277,9 @@ ORDER BY 	Host
 //table
 
 === Find direct dependencies of all internal websites
+
+The query below queries the data model to find all business websites that are on the private intranet for ACME.
+
 [source,cypher]
 ----
 MATCH 		(website)-[:DEPENDS_ON]->(downstream)
@@ -280,6 +292,9 @@ ORDER BY 	Host
 //table
 
 === Find the most depended-upon component
+
+The query below finds the most heavily relied upon component within ACME's network infrastructure. As expected, the most depended upon component is the SAN (Storage Area Network).
+
 [source,cypher]
 ----
 MATCH 		(n)<-[:DEPENDS_ON*]-(dependent)
@@ -292,6 +307,9 @@ LIMIT 		1
 //table
 
 === Find dependency chain for business critical components:  CRM
+
+The query below finds the path of dependent components from left to right for ACME's CRM application. If ACME's CRM (Customer Relationship Management) application goes down it will cause significant impacts to its business. If any one of the components to the right of the CRM hostname fails, the CRM application will fail.
+
 [source,cypher]
 ----
 MATCH 		(dependency)<-[:DEPENDS_ON*]-(dependent)
@@ -309,6 +327,9 @@ RETURN		"[" + head(nodes(p)).host + "]" +
 
 
 === Find dependency chain for business critical components:  ERP
+
+The query below finds the path of dependent components from left to right for ACME's ERP (Enterprise Resource Planning) application. The ERP application represents an array of business resources dedicated to supporting ongoing business activities at ACME, including finance and supply chain management. If ACME's ERP application goes down it will cause significant impacts to its business. If any one of the components to the right of the ERP hostname fails, then the ERP application will fail. This failure will cause revenue impacts since ACME's business relies on this system to conduct business.
+
 [source,cypher]
 ----
 MATCH 		(dependency)<-[:DEPENDS_ON*]-(dependent)
@@ -324,6 +345,7 @@ RETURN		"[" + head(nodes(p)).host + "]" +
 
 //table
 
+The query below finds the path of dependent components from left to right for ACME's DW (Data Warehouse) application. The DW application represents an array of business intelligence resources dedicated to supporting time-sensitive analytical processes at ACME. If ACME's DW application goes down it will cause significant impacts to the business operations at ACME on the technical side. If any one of the components to the right of the DW hostname fails, then the DW application will fail. This failure will cause public facing websites like the eCommerce application to not reflect the latest available data from ACME's ERP application.
 
 === Find dependency chain for business critical components: Data Warehouse
 [source,cypher]
