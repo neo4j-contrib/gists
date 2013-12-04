@@ -6,6 +6,23 @@
 
 This interactive Neo4j tutorial covers a scenario in Network and Data Center Management for ACME. ACME is a fictional company with a large network infrastructure that includes a CRM application, ERP application, and a Data Warehousing solution. ACME has a series of public facing websites that they need to be up and running in order to conduct their business and support their customers.
 
+* *Data Model*
+** <<acme_s_network_dependency_graph, ACME's Network Dependency Graph>>
+* *Cypher Script*
+** <<database_setup, Database Setup>>
+* *Visualization*
+** <<interactive_graph_visualization, Interactive Graph Visualization>>
+* *Find Network Inventory*
+** <<acme_s_network_inventory, ACME’s Network Inventory>>
+* *Find Direct Dependencies*
+** <<find_direct_dependencies_of_all_public_websites, Find direct dependencies of all public websites>>
+** <<find_direct_dependencies_of_all_internal_websites, Find direct dependencies of all internal websites>>
+** <<find_the_most_depended_upon_component, Find the most depended-upon component>>
+* *Find Crticial System Dependencies*
+** <<find_dependency_chain_for_business_critical_components_crm, Find dependency chain for business critical components: CRM>>
+** <<find_dependency_chain_for_business_critical_components_erp, Find dependency chain for business critical components: ERP>>
+** <<find_dependency_chain_for_business_critical_components_data_warehouse , Find dependency chain for business critical components: Data Warehouse>>
+
 === ACME's Network Dependency Graph
 
 image::http://raw.github.com/neo4j-contrib/gists/master/other/images/datacenter-management-1.PNG[Network Dependency Graph]
