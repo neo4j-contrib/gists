@@ -33,6 +33,8 @@ This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
 
 Banks and Insurance companies lose billions of dollars every year to fraud. Traditional methods of fraud detection play an important role in minimizing these losses. However increasingly sophisticated fraudsters have developed a variety of ways to elude discovery, both by working together, and by leveraging various other means of constructing false identities. 
 
+'''
+
 == Explanation of Scenario
 
 While no fraud prevention measures can ever be perfect, significant opportunity for improvement lies in looking beyond the individual data points, to the connections that link them. Oftentimes these connections go unnoticed until it is too late— something that is unfortunate, as these connections oftentimes hold the best clues.
@@ -52,6 +54,7 @@ While the exact details behind each first-party fraud collusion vary from operat
 * Collections processes ensue, but agents are never able to reach the fraudster
 * The uncollectible debt is written off
 
+'''
 
 == Explanation of Solution
 
@@ -68,6 +71,8 @@ Augmenting one’s existing fraud detection infrastructure to support ring detec
 
 Real-time graph traversals tied to the right kinds of events can help banks identify probable fraud rings: during or even before the Bust-Out occurs.
 
+'''
+
 == Bank Fraud Graph Data Model
 
 Graph databases have emerged as an ideal tool for overcoming these hurdles. Languages like Cypher provide a simple semantic for detecting rings in the graph, navigating connections in memory, in real time. 
@@ -75,6 +80,8 @@ Graph databases have emerged as an ideal tool for overcoming these hurdles. Lang
 The graph data model below represents how the data actually looks to the graph database, and illustrates how one can find rings by simply walking the graph:
 
 image::https://raw.github.com/neo4j-contrib/gists/master/other/images/BankFraud-1.png[Bank Fraud]
+
+'''
 
 == Sample Data Set
 
@@ -178,6 +185,7 @@ RETURN *
 
 //graph
 
+'''
 
 == Entity Link Analysis
 

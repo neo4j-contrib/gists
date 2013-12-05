@@ -271,6 +271,8 @@ RETURN *
 
 ----
 
+'''
+
 === Interactive Graph Visualization
 //graph
 
@@ -288,6 +290,8 @@ RETURN 	labels(n)[0] as type,
 
 //table
 
+'''
+
 === Find direct dependencies of all public websites
 
 The query below queries the data model to find all business web applications that are on the public facing internet for ACME.
@@ -302,6 +306,8 @@ ORDER BY 	Host
 ----
 
 //table
+
+'''
 
 === Find direct dependencies of all internal websites
 
@@ -318,6 +324,8 @@ ORDER BY 	Host
 
 //table
 
+'''
+
 === Find the most depended-upon component
 
 The query below finds the most heavily relied upon component within ACME's network infrastructure. As expected, the most depended upon component is the SAN (Storage Area Network).
@@ -332,6 +340,8 @@ LIMIT 		1
 ----
 
 //table
+
+'''
 
 === Find dependency chain for business critical components:  CRM
 
@@ -352,6 +362,7 @@ RETURN		"[" + head(nodes(p)).host + "]" +
 
 //table
 
+'''
 
 === Find dependency chain for business critical components:  ERP
 
@@ -372,9 +383,12 @@ RETURN		"[" + head(nodes(p)).host + "]" +
 
 //table
 
-The query below finds the path of dependent components from left to right for ACME's DW (Data Warehouse) application. The DW application represents an array of business intelligence resources dedicated to supporting time-sensitive analytical processes at ACME. If ACME's DW application goes down it will cause significant impacts to the business operations at ACME on the technical side. If any one of the components to the right of the DW hostname fails, then the DW application will fail. This failure will cause public facing websites like the eCommerce application to not reflect the latest available data from ACME's ERP application.
+'''
 
 === Find dependency chain for business critical components: Data Warehouse
+
+The query below finds the path of dependent components from left to right for ACME's DW (Data Warehouse) application. The DW application represents an array of business intelligence resources dedicated to supporting time-sensitive analytical processes at ACME. If ACME's DW application goes down it will cause significant impacts to the business operations at ACME on the technical side. If any one of the components to the right of the DW hostname fails, then the DW application will fail. This failure will cause public facing websites like the eCommerce application to not reflect the latest available data from ACME's ERP application.
+
 [source,cypher]
 ----
 MATCH 		(dependency)<-[:DEPENDS_ON*]-(dependent)
