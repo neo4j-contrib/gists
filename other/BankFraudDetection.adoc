@@ -1,21 +1,28 @@
 = Bank Fraud Detection
 :neo4j-version: 2.0.0-RC1
-:author: Neo4j
-:twitter: @Neo4j
+:author: Kenny Bastani
+:twitter: @kennybastani
 :tags: domain:finance, use-case:fraud-detection
 
 This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
 
-* <<introduction_to_problem, Introduction to Problem>>
-* <<explanation of scenario, Explanation of Scenario>>
-** <<typical_scenario, Typical Scenario>>
-* <<explanation_of_solution, Explanation of Solution>>
-** <<how_graph_databases_can_help, How Graph Databases Can Help>>
-* <<bank_fraud_data_model, Bank Fraud Graph Data Model>>
-* <<sample_data_set, Sample Data Set>>
-* <<entity_link_analysis, Entity Link Analysis>>
-** <<find_account_holders_who_share_more_than_one_piece_of_legitimate_contact_information, Find account holders who share more than...>>
-** <<determine_the_financial_risk_of_a_possible_fraud_ring , Determine the financial risk of a possible fraud ring>>
+* *Introduction*
+** <<introduction_to_problem, Introduction to Problem>>
+* *Scenario*
+** <<explanation of scenario, Explanation of Scenario>>
+*** <<typical_scenario, Typical Scenario>>
+* *Solution*
+** <<explanation_of_solution, Explanation of Solution>>
+*** <<how_graph_databases_can_help, How Graph Databases Can Help>>
+* *Data Model*
+** <<bank_fraud_data_model, Bank Fraud Graph Data Model>>
+* *Cypher Script*
+** <<sample_data_set, Sample Data Set>>
+* *Entity Link Analysis*
+** <<entity_link_analysis, Entity Link Analysis>>
+** *Queries*
+*** <<find_account_holders_who_share_more_than_one_piece_of_legitimate_contact_information, Find account holders who share more than...>>
+*** <<determine_the_financial_risk_of_a_possible_fraud_ring , Determine the financial risk of a possible fraud ring>>
 
 == Introduction to Problem
 
