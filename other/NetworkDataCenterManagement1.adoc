@@ -276,6 +276,8 @@ RETURN *
 === Interactive Graph Visualization
 //graph
 
+'''
+
 === ACME's Network Inventory
 
 The query below generates a data table that gives a quick overview of ACME's network infrastructure.
