@@ -6,6 +6,10 @@
 
 This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
 
+'''
+
+*Table of Contents*
+
 * *Introduction*
 ** <<introduction_to_problem, Introduction to Problem>>
 * *Scenario*
@@ -22,6 +26,8 @@ This interactive Neo4j graph tutorial covers bank fraud detection scenarios.
 ** <<entity_link_analysis, Entity Link Analysis>>
 ** <<find_account_holders_who_share_more_than_one_piece_of_legitimate_contact_information, Find account holders who share more than one piece of legitimate contact information>>
 ** <<determine_the_financial_risk_of_a_possible_fraud_ring , Determine the financial risk of a possible fraud ring>>
+
+'''
 
 == Introduction to Problem
 
