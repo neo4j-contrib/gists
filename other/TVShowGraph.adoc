@@ -87,7 +87,7 @@ We could also grab the reviews if there are any by slightly tweaking the query:
 MATCH (tvShow:TVShow)-[:HAS_SEASON]->(season)-[:HAS_EPISODE]->(episode)
 WHERE tvShow.name = "How I Met Your Mother"
 WITH season, episode
-OPTIONAL MATCH episode-[:HAS_REVIEW]->(review)
+OPTIONAL MATCH (episode)-[:HAS_REVIEW]->(review)
 RETURN season, episode, review
 ----
 
