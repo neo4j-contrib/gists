@@ -1,5 +1,9 @@
 = TV Show Graph
 
+:neo4j-version: 2.0.0-RC1
+:author: Kenny Bastani
+:twitter: @kennybastani
+
 Sarah Mei recently wrote a http://www.sarahmei.com/blog/2013/11/11/why-you-should-never-use-mongodb/[blog post] describing how she and her colleagues modeled a collection of TV shows and a social network. A few of us at Neo felt strongly that these domains were very graphy in nature.
 
 We wanted to see if our intuition was right (we love the Diaspora project and extend our help to you) and so with the help of http://docs.neo4j.org/chunked/preview/cypher-query-lang.html[Cypher], created a mini version of each of the domains that Sarah described.
@@ -12,6 +16,8 @@ image::http://www.sarahmei.com/blog/wp-content/uploads/2013/11/Screen-Shot-2013-
 
 == The TV Series setup
 
+// setup
+// hide
 [source,cypher]
 ----
 CREATE (himym:TVShow {name: "How I Met Your Mother"})
@@ -81,7 +87,7 @@ We could also grab the reviews if there are any by slightly tweaking the query:
 MATCH (tvShow:TVShow)-[:HAS_SEASON]->(season)-[:HAS_EPISODE]->(episode)
 WHERE tvShow.name = "How I Met Your Mother"
 WITH season, episode
-MATCH episode-[?:HAS_REVIEW]->(review)
+OPTIONAL MATCH episode-[:HAS_REVIEW]->(review)
 RETURN season, episode, review
 ----
 
