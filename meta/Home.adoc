@@ -32,8 +32,11 @@ A first simple query to just create a node:
 
 [source,cypher]
 ----
-CREATE (n{name:'first node'});
+CREATE (n{name:'first node'})
+RETURN n;
 ----
+
+//table
 
 NOTE: This document is a GraphGist, use the Page Source button on top of the page to see the document behind it.
 
