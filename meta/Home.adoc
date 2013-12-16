@@ -1,6 +1,6 @@
 = Neo4j GraphGist =
 
-:neo4j-version: 2.0.0-RC1
+:neo4j-version: 2.0.0
 :author: Anders Nawroth
 :twitter: @nawroth
 :tags: domain:example
