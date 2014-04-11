@@ -1,8 +1,9 @@
-//hide
-//setup
-//output
+//console
 [source,cypher]
-----
+====
 CREATE (n{name:'neo4j'})-[:LIKES]->({name:'complex data'})
-RETURN n.name
-----
+RETURN n as node
+====
+== This cool
+//table
+//graph
