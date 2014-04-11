@@ -1,7 +1,7 @@
 //console
 [source,cypher]
 ====
-CREATE (n{name:'neo4j'})-[:LIKES]->({name:'complex data'})
+CREATE (n{name:'Phuong'})-[:LIKES]->({name:'Neo4J'})
 RETURN n as node
 ====
 == This cool
