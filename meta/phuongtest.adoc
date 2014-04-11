@@ -1,2 +1,8 @@
-CREATE (n{name:'Que Phuong'})-[r:LIKES]->({name:'Amaryllis'})
-RETURN n.name, r
+//hide
+//setup
+//output
+[source,cypher]
+----
+CREATE (n{name:'neo4j'})-[:LIKES]->({name:'complex data'})
+RETURN n.name
+----
