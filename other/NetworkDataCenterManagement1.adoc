@@ -405,3 +405,17 @@ RETURN		"[" + head(nodes(p)).host + "]" +
 ----
 
 //table
+
+=== Find the impact of the removal of a network component : Hardware Server
+
+The query below finds the applications depending on ACME's HARDWARE-SERVER-3. In case a network administrator wants to plan an intervention on the server, he has to know what will be the applications impacted. This way he can warn the applications users.
+
+[source,cypher]
+----
+MATCH (application:Application)-[:DEPENDS_ON*]->(server)
+WHERE       server.host = "HARDWARE-SERVER-3"
+RETURN  application.type as Type,
+        application.host as Host
+----
+
+//table
