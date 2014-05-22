@@ -41,9 +41,8 @@ To see the expressive power of this approach, here are some winners of our past 
 <iframe src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ++++
 
-=== Setup a Graph to show you and your Likes
 
-And render as a graph.
+=== Setup a Graph to show you and your Likes
 
 //setup
 [source,cypher]
@@ -52,17 +51,19 @@ CREATE (you:Person {name:"You"})-[like:LIKE]->(us:Database:NoSql:Graph {name:"Ne
 RETURN you,like,us
 ----
 
+And render as a graph.
+
 //graph
 
 === Now query the graph to show all the things you like
-
-And render as a table.
 
 [source,cypher]
 ----
 CREATE (you:Person {name:"You"})-[like:LIKE]->(us:Database:NoSql:Graph {name:"Neo4j" })
 RETURN you.name as who ,type(like) as how,us.name as what
 ----
+
+And render as a table.
 
 //table
 
