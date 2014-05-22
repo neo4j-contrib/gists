@@ -1,6 +1,6 @@
 = Neo4j GraphGist =
 
-:neo4j-version: 2.0.0
+:neo4j-version: 2.1.0
 :author: Anders Nawroth
 :twitter: @nawroth
 :tags: domain:example
@@ -13,7 +13,7 @@ and pictures but most importantly **example graph models and use-cases** express
 These documents are written in the simple, textual Markup language AsciiDoc and rendered in your browser as rich and interactive
 web pages that you can quickly evolve from describing simple howtos or questions to providing an extensive use-case specification.
 
-To see the expressive power of this approach, here are the winners of our community competitions:
+To see the expressive power of this approach, here are some winners of our past community competitions:
 
 === Examples
 
@@ -31,11 +31,11 @@ To see the expressive power of this approach, here are the winners of our commun
 === It is really easy to get started:
 
 0. **Log into** your GitHub account
-1. **choose** one of the examples listed above, click the green **page source** button.
-2. **fork** the original GraphGist into your own account and **start to edit** the prose, images, setup and use-case Cypher queries
-3. **paste** the Github Gist URL into the top right URL box of any GraphGist page, your Gist will be loaded and rendered immediately
-4. **reload** your GraphGist page whenever you made an update to your document
-5. **share** your GraphGist with your colleagues, friends or us, hit the submit link in the footer, when you are ready to get your t-shirt reward
+1. **Choose** one of the examples listed above, click the green **page source** button.
+2. **Fork** the original GraphGist into your own account and **start to edit** the prose, images, setup and use-case Cypher queries
+3. **Paste** the Github Gist URL into the top right URL box of any GraphGist page, your Gist will be loaded and rendered immediately
+4. **Reload** your GraphGist page whenever you made an update to your document
+5. **Share** your GraphGist with your colleagues, friends or us, hit the submit link in the footer, when you are ready to get your t-shirt reward
 
 ++++
 <iframe src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
