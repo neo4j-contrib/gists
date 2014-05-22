@@ -17,18 +17,15 @@ To see the expressive power of this approach, here are the winners of our commun
 
 === Examples
 
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8021754) [Organization Learning](http://gist.neo4j.org/?8021754) by [@luannem] (https://twitter.com/luannem)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8167705) [Legislative System Graph](http://gist.neo4j.org/?8167705) by [@yaravind](https://twitter.com/yaravind)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc) [Bank Fraud Detection](http://gist.neo4j.org/?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc) by [@kennybastani]
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8412907) [Project Management](http://gist.neo4j.org/?8412907) by [@_nicolemargaret](https://twitter.com/_nicolemargaret)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8019511) [Alpine Skiing seasons] (http://gist.neo4j.org/?8019511) by [@pac_19] (https://twitter.com/pac_19)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?7968633) [Pharmaceutical Drugs and their Targets](http://gist.neo4j.org/?7968633) by [@joshkunken] (https://twitter.com/joshkunken)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8141937) [Piping Water](http://gist.neo4j.org/?8141937) by [@shaundaley1](https://twitter.com/shaundaley1)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8139605) [Single Malt Scotch Whisky](http://gist.neo4j.org/?8139605) by [@patbaumgartner](https://twitter.com/patbaumgartner)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8526106) [Amazon Web Services Global Infrastructure Graph](http://gist.neo4j.org/?8526106) by [@aidanjcasey](https://twitter.com/aidanjcasey)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8635758) [Roads, Nodes and Automobiles](http://gist.neo4j.org/?8635758) by [@tekiegirl](http://www.jacqui.tk)
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?8173017) [Movie Recommendations with k-NN and Cosine Similarity](http://gist.neo4j.org/?8173017) by [@_nicolemargaret]
-* ![](https://graphgist-status.herokuapp.com/?url=http://gist.neo4j.org/?6506717) [Chess Games and Positions](http://gist.neo4j.org/?6506717) by [@wefreema](https://twitter.com/wefreema)
+* link:./?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc[Bank Fraud Detection] by https://twitter.com/kennybastani[@kennybastani]
+* link:./?8019511[Alpine Skiing seasons] by https://twitter.com/pac_19[@pac_19] 
+* link:./?7968633[Pharmaceutical Drugs and their Targets] by [@joshkunken](https://twitter.com/joshkunken)
+* link:./?8141937[Piping Water] by https://twitter.com/shaundaley1[@shaundaley1]
+* link:./?8139605[Single Malt Scotch Whisky] by https://twitter.com/patbaumgartner[@patbaumgartner]
+* link:./?8526106[Amazon Web Services Global Infrastructure Graph] by https://twitter.com/aidanjcasey[@aidanjcasey]
+* link:./?8635758[Roads, Nodes and Automobiles] by http://www.jacqui.tk[@tekiegirl]
+* link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by [@_nicolemargaret]
+* link:./?6506717[Chess Games and Positions] by https://twitter.com/wefreema[@wefreema]
 * *Many more examples can be found in the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection]*
 
 === It is really easy to get started:
@@ -41,7 +38,7 @@ To see the expressive power of this approach, here are the winners of our commun
 5. **share** your GraphGist with your colleagues, friends or us, hit the submit link in the footer, when you are ready to get your t-shirt reward
 
 ++++
-<iframe style="float:right" src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> <p><a href="http://vimeo.com/74279113">How to create a Neoj4 GraphGist</a> from <a href="http://vimeo.com/user1375223">Peter Neubauer</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+<iframe src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ++++
 
 * link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FSimple.adoc[A simple GraphGist]
