@@ -1,17 +1,17 @@
-= Neo4j GraphGist =
+= What is the Neo4j GraphGist Project? =
 
 :neo4j-version: 2.1.0
 :author: Anders Nawroth
 :twitter: @nawroth
 :tags: domain:example
 
-== What are GraphGists ?
+:image:https://dl.dropboxusercontent.com/u/14493611/neo4j-logo.png[]
 
 http://neo4j.com[Neo4j] GraphGists are an easy way to create and share documents containing not just prose, structure 
 and pictures but most importantly **example graph models and use-cases** expressed in Neo4j's query language http://docs.neo4j.org/refcard/2.1/[Cypher].
 
-These documents are written in the simple, textual Markup language AsciiDoc and rendered in your browser as rich and interactive
-web pages that you can quickly evolve from describing simple howtos or questions to providing an extensive use-case specification.
+These documents are written in AsciiDoc - the simple, textual markup language - and rendered in your browser as rich and interactive web pages that you 
+can quickly evolve from describing simple howtos or questions to providing an extensive use-case specification.
 
 To see the expressive power of this approach, here are some winners of our past community competitions:
 
