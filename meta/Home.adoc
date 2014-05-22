@@ -16,16 +16,16 @@ can quickly evolve from describing simple howtos or questions to providing an ex
 To see the expressive power of this approach, here are some winners of our past community competitions:
 
 === Examples
-
-Finance:: link:./?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc[Bank Fraud Detection] by https://twitter.com/kennybastani[@kennybastani]
-Sports:: link:./?8019511[Alpine Skiing seasons] by https://twitter.com/pac_19[@pac_19] 
-Life Science:: link:./?7968633[Pharmaceutical Drugs and their Targets] by https://twitter.com/joshkunken[@joshkunken]
-Resources:: link:./?8141937[Piping Water] by https://twitter.com/shaundaley1[@shaundaley1]
-Retail:: link:./?8139605[Single Malt Scotch Whisky] by https://twitter.com/patbaumgartner[@patbaumgartner]
-Telecommunications:: link:./?8526106[Amazon Web Services Global Infrastructure Graph] by https://twitter.com/aidanjcasey[@aidanjcasey]
-Infrastructure:: link:./?8635758[Roads, Nodes and Automobiles] by http://www.jacqui.tk[@tekiegirl]
-Recommendation:: link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by http://twitter.com/_nicolemargaret[@_nicolemargaret]
-Fun:: link:./?6506717[Chess Games and Positions] by https://twitter.com/wefreema[@wefreema]
+[none]
+* **Finance** link:./?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc[Bank Fraud Detection] by https://twitter.com/kennybastani[@kennybastani]
+* **Sports** link:./?8019511[Alpine Skiing seasons] by https://twitter.com/pac_19[@pac_19] 
+* **Life Science** link:./?7968633[Pharmaceutical Drugs and their Targets] by https://twitter.com/joshkunken[@joshkunken]
+* **Resources** link:./?8141937[Piping Water] by https://twitter.com/shaundaley1[@shaundaley1]
+* **Retail** link:./?8139605[Single Malt Scotch Whisky] by https://twitter.com/patbaumgartner[@patbaumgartner]
+* **Telecommunications** link:./?8526106[Amazon Web Services Global Infrastructure Graph] by https://twitter.com/aidanjcasey[@aidanjcasey]
+* **Infrastructure** link:./?8635758[Roads, Nodes and Automobiles] by http://www.jacqui.tk[@tekiegirl]
+* **Recommendation** link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by http://twitter.com/_nicolemargaret[@_nicolemargaret]
+* **Fun** link:./?6506717[Chess Games and Positions] by https://twitter.com/wefreema[@wefreema]
 * *Many more examples can be found in the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection]*
 
 === It is really easy to get started:
