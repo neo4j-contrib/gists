@@ -19,12 +19,12 @@ To see the expressive power of this approach, here are some winners of our past 
 
 * link:./?github-neo4j-contrib%2Fgists%2F%2Fother%2FBankFraudDetection.adoc[Bank Fraud Detection] by https://twitter.com/kennybastani[@kennybastani]
 * link:./?8019511[Alpine Skiing seasons] by https://twitter.com/pac_19[@pac_19] 
-* link:./?7968633[Pharmaceutical Drugs and their Targets] by [@joshkunken](https://twitter.com/joshkunken)
+* link:./?7968633[Pharmaceutical Drugs and their Targets] by https://twitter.com/joshkunken[@joshkunken]
 * link:./?8141937[Piping Water] by https://twitter.com/shaundaley1[@shaundaley1]
 * link:./?8139605[Single Malt Scotch Whisky] by https://twitter.com/patbaumgartner[@patbaumgartner]
 * link:./?8526106[Amazon Web Services Global Infrastructure Graph] by https://twitter.com/aidanjcasey[@aidanjcasey]
 * link:./?8635758[Roads, Nodes and Automobiles] by http://www.jacqui.tk[@tekiegirl]
-* link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by [@_nicolemargaret]
+* link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by http://twitter.com/_nicolemargaret[@_nicolemargaret]
 * link:./?6506717[Chess Games and Positions] by https://twitter.com/wefreema[@wefreema]
 * *Many more examples can be found in the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection]*
 
@@ -40,10 +40,6 @@ To see the expressive power of this approach, here are some winners of our past 
 ++++
 <iframe src="//player.vimeo.com/video/74279113" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 ++++
-
-* link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FSimple.adoc[A simple GraphGist]
-* link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FHowTo.adoc[How to create a GraphGist]
-
 
 === Setup a Graph to show you and your Likes
 
@@ -73,3 +69,10 @@ RETURN you.name as who ,type(like) as how,us.name as what
 NOTE: This document is a GraphGist itself, so you can use the green +Page Source+ button on top of the page to see the original AsciiDoc document.
 
 We'd love to get your feedback, so feel free to write us at *docs at neo4j.org* or comment in the section below.
+
+/*
+=== Some Templates
+
+* link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FSimple.adoc[A simple GraphGist]
+* link:./?github-neo4j-contrib%2Fgists%2F%2Fmeta%2FHowTo.adoc[How to create a GraphGist]
+*/
