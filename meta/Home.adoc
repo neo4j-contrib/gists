@@ -67,7 +67,7 @@ And render as a table.
 
 //table
 
-NOTE: This document is a GraphGist itself, so you can use the green +Page Source+ button on top of the page to see the original AsciiDoc document.
+NOTE: This document is a GraphGist itself, so you can use the green https://github.com/neo4j-contrib/gists/blob/master/meta/Home.adoc[Page Source] button on top of the page to see the original AsciiDoc document.
 
 We'd love to get your feedback, so feel free to write us at *docs at neo4j.org* or comment in the section below.
 
