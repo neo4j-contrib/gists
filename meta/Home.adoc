@@ -26,7 +26,7 @@ To see the expressive power of this approach, here are some winners of our past 
 * **Infrastructure** link:./?8635758[Roads, Nodes and Automobiles] by http://www.jacqui.tk[@tekiegirl]
 * **Recommendation** link:./?8173017[Movie Recommendations with k-NN and Cosine Similarity] by http://twitter.com/_nicolemargaret[@_nicolemargaret]
 * **Fun** link:./?6506717[Chess Games and Positions] by https://twitter.com/wefreema[@wefreema]
-* *Many more examples can be found in the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection]*
+* **One hundred more** examples can be found in the https://github.com/neo4j-contrib/graphgist/wiki[GraphGist Collection]
 
 === It is really easy to get started:
 
