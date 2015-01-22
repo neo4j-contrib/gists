@@ -1,0 +1,9 @@
+//console
+[source,cypher]
+====
+CREATE (n{name:'Phuong'})-[:LIKES]->({name:'Neo4J'})
+RETURN n as node
+====
+== This cool
+//table
+//graph
